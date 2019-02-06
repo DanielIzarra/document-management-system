@@ -26,3 +26,4 @@ Route::get('roles/create', 'RoleController@create')->name('roles.create')->middl
 Route::get('roles', 'RoleController@index')->name('roles.index')->middleware('permission:index_roles');
 Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permission:edit_roles');
 Route::patch('roles/{role}', 'RoleController@update')->name('roles.update')->middleware('permission:edit_roles');
+Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:destroy_roles');
