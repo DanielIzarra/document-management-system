@@ -35,7 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                         @can('index_users')
                         <li class="nav-item <?php $isActivated = isset($users) ? 'active' : ''; echo $isActivated; ?>">
-                            <a class="nav-link" href="{{ route('users.create') }}">{{ __('Users') }}</a>
+                            <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
                         </li>
                         @endcan
                         @can('index_roles')
