@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item <?php $isActivated = isset($roles) ? 'active' : ''; echo $isActivated; ?>">
-                            <a class="nav-link" href="{{ route('roles.create') }}">{{ __('Roles') }}</a>
+                            <a class="nav-link" href="{{ route('roles.index') }}">{{ __('Roles') }}</a>
                         </li>
                     </ul>
 

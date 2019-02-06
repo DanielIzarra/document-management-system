@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('roles/store', 'RoleController@store')->name('roles.store')->middleware('permission:create_roles');
 Route::get('roles/create', 'RoleController@create')->name('roles.create')->middleware('permission:create_roles');
+Route::get('roles', 'RoleController@index')->name('roles.index')->middleware('permission:index_roles');
