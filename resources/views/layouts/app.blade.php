@@ -33,6 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @can('index_users')
+                        <li class="nav-item <?php $isActivated = isset($users) ? 'active' : ''; echo $isActivated; ?>">
+                            <a class="nav-link" href="{{ route('users.create') }}">{{ __('Users') }}</a>
+                        </li>
+                        @endcan
                         @can('index_roles')
                             <li class="nav-item <?php $isActivated = isset($roles) ? 'active' : ''; echo $isActivated; ?>">
                                 <a class="nav-link" href="{{ route('roles.index') }}">{{ __('Roles') }}</a>
