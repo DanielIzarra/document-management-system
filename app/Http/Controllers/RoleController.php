@@ -83,9 +83,12 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        $permissions = Permission::all();
+        $checked_permissions = $role->permissions()->get();
+        $isroot = $role->isroot;
+        return view('roles.edit', compact('role', 'permissions', 'checked_permissions', 'isroot'));
     }
 
     /**
@@ -95,9 +98,36 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:191',
+            'slug' => 'required|string|max:191',
+            'description' => 'nullable|string|max:100',
+            'isroot' => 'required|boolean'
+        ]);
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+        
+        /* 
+        * 'name' y 'slug' deben de ser únicos en la base de datos, 
+        * se controla la excepción 
+        */        
+        try {
+            $role->update($request->all());
+            $role->permissions()->sync($request->get('permissions'));
+            return back()->with('status', 'Role updated');
+        } catch(\Illuminate\Database\QueryException $ex) {
+            $validator->getMessageBag()->add('name', 'Make sure there is no other role with this name');
+            $validator->getMessageBag()->add('slug', 'Make sure there is no other role with this slug');
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
     }
 
     /**
