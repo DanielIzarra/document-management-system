@@ -33,3 +33,4 @@ Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')->
 Route::get('users/create', 'UserController@create')->name('users.create')->middleware('permission:create_users');
 Route::post('users/store', 'UserController@store')->name('users.store')->middleware('permission:create_users');
 Route::get('users', 'UserController@index')->name('users.index')->middleware('permission:index_users');
+Route::get('users/{user}', 'UserController@show')->name('users.show')->middleware('permission:show_users');

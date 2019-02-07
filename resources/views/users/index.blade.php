@@ -34,6 +34,11 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
+                                    <td>
+                                        @can('users_show')
+                                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Show</a>
+                                        @endcan
+                                    </td> 
                                 </tr>
                                 @endforeach
                             </tbody>
