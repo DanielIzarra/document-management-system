@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use Validator;
 use Redirect;
+use Caffeinated\Shinobi\Traits;
 use Caffeinated\Shinobi\Models\Role;
+use Caffeinated\Shinobi\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -81,24 +83,55 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $permissions = Permission::all();
+        $checked_permissions = $user->permissions()->get();
+        $roles = Role::all();
+        $checked_roles = $user->roles()->get();
+
+        return view('users.edit', compact('user', 'permissions', 'checked_permissions', 'roles', 'checked_roles'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:191',
+        ]);
+
+        $user->name = request('name');
+
+        if (request('password')) {
+            $this->validate(request(), [
+                'password' => 'string|min:6|confirmed|max:191',
+            ]);
+
+            $user->password = Hash::make(request('password'));
+        }
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $user->save();
+
+        $user->permissions()->sync($request->get('permissions'));
+
+        $user->roles()->sync($request->get('roles'));
+
+        return back()->with('status', 'Profile updated');
     }
 
     /**

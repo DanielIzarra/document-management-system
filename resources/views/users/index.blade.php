@@ -39,6 +39,11 @@
                                             <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Show</a>
                                         @endcan
                                     </td> 
+                                    <td>
+                                        @can('users_edit')
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Edit</a>
+                                        @endcan
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
