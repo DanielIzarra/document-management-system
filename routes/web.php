@@ -36,3 +36,4 @@ Route::get('users', 'UserController@index')->name('users.index')->middleware('pe
 Route::get('users/{user}', 'UserController@show')->name('users.show')->middleware('permission:show_users');
 Route::patch('users/{user}', 'UserController@update')->name('users.update')->middleware('permission:edit_users'); 
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('permission:edit_users');
+Route::delete('users/{user}', 'UserController@destroy')->name('users.destroy')->middleware('permission:destroy_users');
