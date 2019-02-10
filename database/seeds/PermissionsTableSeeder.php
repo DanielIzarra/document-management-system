@@ -15,7 +15,7 @@ class PermissionsTableSeeder extends Seeder
         Permission::create([
             'name'         => 'Crear rol',
             'slug'         => 'create_roles',
-            'description'  => 'Crea un nuevo rol',
+            'description'  => 'Permite crear un nuevo rol',
             'isroot'       => '1',
         ]);
 
@@ -43,14 +43,14 @@ class PermissionsTableSeeder extends Seeder
         Permission::create([
             'name'         => 'Crear usuario',
             'slug'         => 'create_users',
-            'description'  => 'Crea un nuevo usuario',
+            'description'  => 'Permite crear un nuevo usuario',
             'isroot'       => '0',
         ]);
 
         Permission::create([
             'name'         => 'Ver usuarios del sistema',
             'slug'         => 'index_users',
-            'description'  => 'Muestra una lista de todos los usuarios del sistema',
+            'description'  => 'Muestra todos los usuarios del sistema',
             'isroot'       => '1',
         ]);     
 
@@ -72,6 +72,55 @@ class PermissionsTableSeeder extends Seeder
             'name'         => 'Eliminar usuario',
             'slug'         => 'destroy_users',
             'description'  => 'Permite eliminar un usuario',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Crear empresa',
+            'slug'         => 'create_companies',
+            'description'  => 'Permite crear una nueva empresa',
+            'isroot'       => '1',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver empresas del sistema',
+            'slug'         => 'index_companies',
+            'description'  => 'Muestra todas las empresas del sistema',
+            'isroot'       => '1',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver empresas administradas',
+            'slug'         => 'index_admin_companies',
+            'description'  => 'Muestra las empresas administradas por un usuario',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver información de la empresa',
+            'slug'         => 'show_companies',
+            'description'  => 'Permite ver la información de una empresa',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Editar información de la empresa',
+            'slug'         => 'edit_companies',
+            'description'  => 'Permite editar la información de la empresa',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Eliminar empresa',
+            'slug'         => 'destroy_companies',
+            'description'  => 'Permite eliminar una empresa',
+            'isroot'       => '1',
+        ]);
+
+        Permission::create([
+            'name'         => 'Asignar/desasginar usuario a empresa',
+            'slug'         => 'assign_companies',
+            'description'  => 'Permite la asignación de un usuario a una empresa',
             'isroot'       => '0',
         ]);
     }

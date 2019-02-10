@@ -37,3 +37,8 @@ Route::get('users/{user}', 'UserController@show')->name('users.show')->middlewar
 Route::patch('users/{user}', 'UserController@update')->name('users.update')->middleware('permission:edit_users'); 
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('permission:edit_users');
 Route::delete('users/{user}', 'UserController@destroy')->name('users.destroy')->middleware('permission:destroy_users');
+
+//Companies
+
+Route::get('companies/create', 'CompanyController@create')->name('companies.create')->middleware('permission:create_companies');
+Route::post('companies/store', 'CompanyController@store')->name('companies.store')->middleware('permission:create_companies');
