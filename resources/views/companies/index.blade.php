@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <div>
-                        @can('users_create')
+                        @can('create_companies')
                             <a href="{{ route('companies.create')}}" class="btn btn-sm btn-primary float-right">create company</a>
                         @endcan                
                     </div>
@@ -26,7 +26,7 @@
                                 <tr>
                                     <th width="50px">id</th>
                                     <th>Name</th>
-                                    <th colspan="3" class="col-md-1">&nbsp;</th>
+                                    <th colspan="4" class="col-md-1">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,6 +34,11 @@
                                 <tr>
                                     <td>{{ $company->id }}</td>
                                     <td>{{ $company->name }}</td>
+                                    <td>
+                                        @can('index_users_company')
+                                            <a href="{{ route('companies.index_users_company', $company->id) }}" class="btn btn-sm btn-outline-dark float-right">Users</a>
+                                        @endcan
+                                    </td> 
                                     <td>
                                         @can('companies_show')
                                             <a href="{{ route('companies.show', $company->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
@@ -57,7 +62,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $companies->render() }}
                     </div>
                 </div>
             </div>

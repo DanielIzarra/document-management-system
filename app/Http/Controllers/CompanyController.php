@@ -36,6 +36,18 @@ class CompanyController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_users_company(Company $company)
+    {
+        $users = $company->users()->get();
+
+        return view('users.index', compact('users'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

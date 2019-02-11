@@ -97,6 +97,13 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
+            'name'         => 'Ver usuarios de una empresa',
+            'slug'         => 'index_users_company',
+            'description'  => 'Muestra los usuarios de una empresa',
+            'isroot'       => '0',
+        ]);  
+
+        Permission::create([
             'name'         => 'Ver información de la empresa',
             'slug'         => 'show_companies',
             'description'  => 'Permite ver la información de una empresa',
@@ -115,13 +122,6 @@ class PermissionsTableSeeder extends Seeder
             'slug'         => 'destroy_companies',
             'description'  => 'Permite eliminar una empresa',
             'isroot'       => '1',
-        ]);
-
-        Permission::create([
-            'name'         => 'Asignar/desasignar usuario a empresa',
-            'slug'         => 'assign_companies',
-            'description'  => 'Permite la asignación de un usuario a una empresa',
-            'isroot'       => '0',
         ]);
 
         Permission::create([
