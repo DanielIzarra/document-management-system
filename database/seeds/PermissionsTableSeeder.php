@@ -118,7 +118,7 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name'         => 'Asignar/desasginar usuario a empresa',
+            'name'         => 'Asignar/desasignar usuario a empresa',
             'slug'         => 'assign_companies',
             'description'  => 'Permite la asignación de un usuario a una empresa',
             'isroot'       => '0',
