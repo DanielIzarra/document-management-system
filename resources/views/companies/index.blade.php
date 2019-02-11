@@ -34,6 +34,11 @@
                                 <tr>
                                     <td>{{ $company->id }}</td>
                                     <td>{{ $company->name }}</td>
+                                    <td>
+                                        @can('companies_show')
+                                            <a href="{{ route('companies.show', $company->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
+                                        @endcan
+                                    </td> 
                                 </tr>
                                 @endforeach
                             </tbody>
