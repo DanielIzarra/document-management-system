@@ -47,3 +47,5 @@ Route::get('companies/{company}', 'CompanyController@show')->name('companies.sho
 Route::patch('companies/{company}', 'CompanyController@update')->name('companies.update')->middleware('permission:edit_companies'); 
 Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit')->middleware('permission:edit_companies');
 Route::delete('companies/{company}', 'CompanyController@destroy')->name('companies.destroy')->middleware('permission:destroy_companies');
+Route::get('companies/{user}/assigncreate', 'CompanyController@create_assign_companies')->name('companies.create_assign_companies')->middleware('permission:assign_admin_companies');
+Route::post('companies/{user}/assignstore', 'CompanyController@store_assign_companies')->name('companies.store_assign_companies')->middleware('permission:assign_admin_companies');

@@ -123,5 +123,12 @@ class PermissionsTableSeeder extends Seeder
             'description'  => 'Permite la asignación de un usuario a una empresa',
             'isroot'       => '0',
         ]);
+
+        Permission::create([
+            'name'         => 'Asignar/desasignar administrador a empresa',
+            'slug'         => 'assign_admin_companies',
+            'description'  => 'Permite la asignación de un administrador a una o varias empresas',
+            'isroot'       => '1',
+        ]);
     }
 }

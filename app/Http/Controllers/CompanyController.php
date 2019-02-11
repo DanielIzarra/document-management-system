@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\User;
 use Validator;
 use Redirect;
 use Illuminate\Http\Request;
@@ -140,5 +141,33 @@ class CompanyController extends Controller
         $company->delete();
 
         return back()->with('status', 'Company deleted');
+    }
+
+    /**
+     * Assign user (administrator) to companies.
+     *
+     * @param  \App\Company  $company
+     * @return \Illuminate\Http\Response
+     */
+    public function create_assign_companies(User $user)
+    {
+        $companies = Company::all();
+        $checked_companies = $user->companies()->get();
+
+        return view('companies.assign_admin', compact('user', 'companies', 'checked_companies'));
+    }
+
+    /**
+     * Assign user (administrator) to companies.
+     * 
+     * @param  \App\User  $user
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store_assign_companies(Request $request, User $user)
+    {
+        $user->companies()->sync($request->get('companies'));        
+
+        return back()->with('status', 'Assigned companies');
     }
 }

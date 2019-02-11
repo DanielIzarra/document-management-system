@@ -26,7 +26,7 @@
                                 <tr>
                                     <th width="50px">id</th>
                                     <th>Name</th>
-                                    <th colspan="3" class="col-md-1">&nbsp;</th>
+                                    <th colspan="4" class="col-md-1">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,6 +34,13 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
+                                    <td>
+                                        <div>
+                                            @can('assign_admin_companies')
+                                                <a href="{{ route('companies.create_assign_companies', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Assign</a>
+                                            @endcan
+                                        </div>
+                                    </td>
                                     <td>
                                         @can('users_show')
                                             <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Show</a>

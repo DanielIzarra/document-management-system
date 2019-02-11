@@ -14,4 +14,12 @@ class Company extends Model
     protected $fillable = [
         'name', 'denomination', 'cif', 'email',
     ];
+
+    /**
+     * The users that belong to the company.
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }    
 }
