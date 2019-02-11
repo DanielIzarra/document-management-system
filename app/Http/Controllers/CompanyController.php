@@ -7,6 +7,7 @@ use App\User;
 use Validator;
 use Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -18,6 +19,18 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::paginate(20);
+
+        return view('companies.index', compact('companies'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_administrator()
+    {
+        $companies = Auth::user()->companies()->paginate(5);
 
         return view('companies.index', compact('companies'));
     }

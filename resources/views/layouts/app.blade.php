@@ -43,6 +43,11 @@
                                 <a class="nav-link" href="{{ route('companies.index') }}">{{ __('Companies') }}</a>
                             </li>
                         @endcan
+                        @can('index_admin_companies')
+                        <li class="nav-item <?php $isActivated = isset($companies) ? 'active' : ''; echo $isActivated; ?>">
+                            <a class="nav-link" href="{{ route('companies.index_administrator') }}">{{ __('Company') }}</a>
+                        </li>
+                        @endcan                        
                         @can('index_roles')
                             <li class="nav-item <?php $isActivated = isset($roles) ? 'active' : ''; echo $isActivated; ?>">
                                 <a class="nav-link" href="{{ route('roles.index') }}">{{ __('Roles') }}</a>
