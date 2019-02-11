@@ -46,3 +46,4 @@ Route::get('companies', 'CompanyController@index')->name('companies.index')->mid
 Route::get('companies/{company}', 'CompanyController@show')->name('companies.show')->middleware('permission:show_companies');
 Route::patch('companies/{company}', 'CompanyController@update')->name('companies.update')->middleware('permission:edit_companies'); 
 Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit')->middleware('permission:edit_companies');
+Route::delete('companies/{company}', 'CompanyController@destroy')->name('companies.destroy')->middleware('permission:destroy_companies');

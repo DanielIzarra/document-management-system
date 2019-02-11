@@ -137,6 +137,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+
+        return back()->with('status', 'Company deleted');
     }
 }
