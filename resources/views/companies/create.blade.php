@@ -14,7 +14,6 @@
             @endif
             <form method="POST" action="{{ route('companies.store') }}">
                 @csrf
-                @method('PATCH')
     
                 <div class="form-row"> 
                     <div class="col-md-12">       
@@ -83,6 +82,12 @@
                             </div>
                         </div>
                     </div> 
+                </div>
+                <br>
+                <div class="col-md-1 offset-md-11">
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Save') }}
+                    </button>
                 </div>
             </form>
         </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use Validator;
+use Redirect;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -57,7 +59,7 @@ class CompanyController extends Controller
         }
 
         $company->name = request('name');
-        $company->name = request('denomination');
+        $company->denomination = request('denomination');
         $company->cif = request('cif');
 
         $company->save();
