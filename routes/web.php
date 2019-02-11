@@ -44,3 +44,5 @@ Route::get('companies/create', 'CompanyController@create')->name('companies.crea
 Route::post('companies/store', 'CompanyController@store')->name('companies.store')->middleware('permission:create_companies');
 Route::get('companies', 'CompanyController@index')->name('companies.index')->middleware('permission:index_companies');
 Route::get('companies/{company}', 'CompanyController@show')->name('companies.show')->middleware('permission:show_companies');
+Route::patch('companies/{company}', 'CompanyController@update')->name('companies.update')->middleware('permission:edit_companies'); 
+Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit')->middleware('permission:edit_companies');

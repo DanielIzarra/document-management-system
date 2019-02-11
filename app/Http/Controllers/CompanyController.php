@@ -88,7 +88,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', compact('company'));
     }
 
     /**
@@ -100,7 +100,33 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:191',
+            'denomination' => 'required|string|max:191',
+            'cif' => 'required|string|max:191|unique:companies',
+        ]);
+
+        if (request('email')) {
+            $this->validate(request(), [
+                'email' => 'string|email|max:191',
+            ]);
+
+            $company->email = request('email');
+        }
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $company->name = request('name');
+        $company->denomination = request('denomination');
+        $company->cif = request('cif');
+
+        $company->save();
+
+        return back()->with('status', 'Updated company data');
     }
 
     /**
