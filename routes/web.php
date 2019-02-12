@@ -19,6 +19,7 @@ Auth::routes(['register' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 // Roles
 
 Route::post('roles/store', 'RoleController@store')->name('roles.store')->middleware('permission:create_roles');
@@ -37,3 +38,17 @@ Route::get('users/{user}', 'UserController@show')->name('users.show')->middlewar
 Route::patch('users/{user}', 'UserController@update')->name('users.update')->middleware('permission:edit_users'); 
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('permission:edit_users');
 Route::delete('users/{user}', 'UserController@destroy')->name('users.destroy')->middleware('permission:destroy_users');
+
+//Companies
+
+Route::get('companies/create', 'CompanyController@create')->name('companies.create')->middleware('permission:create_companies');
+Route::post('companies/store', 'CompanyController@store')->name('companies.store')->middleware('permission:create_companies');
+Route::get('companies/index', 'CompanyController@index')->name('companies.index')->middleware('permission:index_companies');
+Route::get('companies', 'CompanyController@index_administrator')->name('companies.index_administrator')->middleware('permission:index_admin_companies');
+Route::get('companies/index/{company}', 'CompanyController@index_users_company')->name('companies.index_users_company')->middleware('permission:index_users_company');
+Route::get('companies/{company}', 'CompanyController@show')->name('companies.show')->middleware('permission:show_companies');
+Route::patch('companies/{company}', 'CompanyController@update')->name('companies.update')->middleware('permission:edit_companies'); 
+Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit')->middleware('permission:edit_companies');
+Route::delete('companies/{company}', 'CompanyController@destroy')->name('companies.destroy')->middleware('permission:destroy_companies');
+Route::get('companies/{user}/assigncreate', 'CompanyController@create_assign_companies')->name('companies.create_assign_companies')->middleware('permission:assign_admin_companies');
+Route::post('companies/{user}/assignstore', 'CompanyController@store_assign_companies')->name('companies.store_assign_companies')->middleware('permission:assign_admin_companies');

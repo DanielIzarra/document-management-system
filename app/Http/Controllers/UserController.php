@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Company;
 use Validator;
 use Redirect;
 use Caffeinated\Shinobi\Traits;
@@ -34,8 +35,9 @@ class UserController extends Controller
     public function create()
     {
         $allroles = Role::all();
+        $companies = Auth::user()->companies()->get();        
 
-        return view('users.create', compact('allroles'));
+        return view('users.create', compact('allroles', 'companies'));
     }
 
     /**
@@ -64,6 +66,7 @@ class UserController extends Controller
         
         $user->save();
 
+        $user->companies()->sync($request->get('companies'));
         $user->roles()->sync($request->get('roles'));
 
         return back()->with('status', 'User created');
@@ -92,8 +95,11 @@ class UserController extends Controller
         $checked_permissions = $user->permissions()->get();
         $roles = Role::all();
         $checked_roles = $user->roles()->get();
+        $companies = Auth::user()->companies()->get();
+        $checked_companies = $user->companies()->get();       
 
-        return view('users.edit', compact('user', 'permissions', 'checked_permissions', 'roles', 'checked_roles'));
+        return view('users.edit', compact('user', 'permissions', 'checked_permissions', 
+                    'roles', 'checked_roles', 'companies', 'checked_companies'));
     }
 
     /**
@@ -127,8 +133,8 @@ class UserController extends Controller
 
         $user->save();
 
+        $user->companies()->sync($request->get('companies'));
         $user->permissions()->sync($request->get('permissions'));
-
         $user->roles()->sync($request->get('roles'));
 
         return back()->with('status', 'Profile updated');
