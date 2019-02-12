@@ -17,13 +17,13 @@
                 @method('PATCH') <!-- patch te redirige directamente al método update -->
     
                 <div class="form-row"> 
-                    <div class="col-md-12">       
+                    <div class="col-md-6">       
                         <div class="card">
                             <div class="card-header"><h4>User profile data</h4></div>
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-md-3 col-sm-12">
-                                        <label for="name" class="col-md-12 col-form-label text-md-left">{{ __('Name') }}</label>
+                                        <label for="name" class="col-form-label text-md-left">{{ __('Name') }}</label>
                                     </div>
                                     <div class="col-md-9 col-sm-12">
                                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
@@ -38,7 +38,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-md-3 col-sm-12">
-                                        <label for="email" class="col-md-12 col-form-label text-md-left">{{ __('E-Mail Address') }}</label>
+                                        <label for="email" class="col-form-label text-md-left">{{ __('E-Mail Address') }}</label>
                                     </div>
                                     <div class="col-md-9 col-sm-12">
                                         <input type="text" readonly class="col-form-label form-control-plaintext" id="email" value="{{ $user->email }}">
@@ -47,7 +47,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-md-3 col-sm-12">
-                                        <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Password') }}</label>
+                                        <label for="password" class="col-form-label text-md-left">{{ __('Password') }}</label>
                                     </div>
                                     <div class="col-md-9 col-sm-12">
                                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password">
@@ -62,7 +62,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-md-3 col-sm-12">
-                                        <label for="password-confirm" class="col-md-12 col-form-label text-md-left">{{ __('Confirm Password') }}</label>
+                                        <label for="password-confirm" class="col-form-label text-md-left">{{ __('Confirm Password') }}</label>
                                     </div>
                                     <div class="col-md-9 col-sm-12">
                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Password Confirmation">
@@ -70,16 +70,47 @@
                                 </div>                                
                             </div>
                         </div>
-                    </div> 
+                    </div>
+                    <div class="col-md-6"> 
+                        <div class="card">
+                            <div class="card-header"><h4>Companies assignment</h4></div>
+                            <div class="card-body">
+                                <ul class="list-unstyled" style="height: 195px; overflow-y: auto;">
+                                    @foreach($companies as $company)
+                                        @php($change = True)
+                                        @foreach($checked_companies as $checked_company)
+                                            @if($company->id == $checked_company->id)
+                                            <li>
+                                                <label class="form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" name="companies[]" value="{{ $company->id }}" checked>
+                                                    {{ $company->name }}
+                                                    @php($change = False)
+                                                </label>
+                                            </li>
+                                            @endif
+                                        @endforeach
+                                        @if($change == True)
+                                        <li>
+                                            <label class="form-check-inline">
+                                                <input class="form-check-input" type="checkbox" name="companies[]" value="{{ $company->id }}">
+                                                {{ $company->name }}
+                                            </label>
+                                        </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <br>
-                @role('e')
+                @role('root')
                 <div class="form-row">
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header"><h4>User permissions</h4></div>
                             <div class="card-body">
-                                <ul class="list-unstyled" style="height: 200px; overflow-y: auto;">
+                                <ul class="list-unstyled" style="height: 195px; overflow-y: auto;">
                                     @foreach($permissions as $permission)
                                         @if($permission->isroot == 0)
                                             @php($change = True)
@@ -114,9 +145,9 @@
                         <div class="card">
                             <div class="card-header"><h4>User roles</h4></div> 
                             <div class="card-body">
-                                <ul class="list-unstyled" style="height: 200px; overflow-y: auto;">
+                                <ul class="list-unstyled" style="height: 195px; overflow-y: auto;">
                                     @foreach($roles as $role)
-                                        @if($role->name != 'admin')
+                                        @if($role->name != 'root')
                                             @php($change = True)
                                             @foreach($checked_roles as $checked_role)
                                                 @if($role->id == $checked_role->id)
@@ -149,9 +180,9 @@
                 @endrole
                 <br>
                 <div class="col-md-1 offset-md-11">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Save') }}
-                        </button>
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Save') }}
+                    </button>
                 </div>
             </form>  
         </div>
