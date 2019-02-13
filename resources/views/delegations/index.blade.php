@@ -27,6 +27,12 @@
                                         <tr>
                                             <td>{{ $delegation->id }}</td>
                                             <td>{{ $delegation->name }}</td>
+
+                                            <td>
+                                                @can('index_users_delegation')
+                                                    <a href="{{ route('delegations.index_users_delegation', $delegation->id) }}" class="btn btn-sm btn-outline-dark float-right">Users</a>
+                                                @endcan
+                                            </td>
                                             <td>
                                                 @can('show_delegations')
                                                     <a href="{{ route('delegations.show', $delegation->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
