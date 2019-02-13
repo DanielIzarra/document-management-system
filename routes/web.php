@@ -72,4 +72,6 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('departments/create', 'DepartmentController@create')->name('departments.create')->middleware('permission:create_departments');
     Route::post('departments/store', 'DepartmentController@store')->name('departments.store')->middleware('permission:create_departments');
+    Route::get('departments/{department}', 'DepartmentController@show')->name('departments.show')->middleware('permission:show_departments');
+
 });

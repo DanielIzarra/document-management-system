@@ -28,6 +28,12 @@
                                             <td>{{ $department->id }}</td>
                                             <td>{{ $department->name }}</td>
 
+                                            <td>
+                                                @can('show_departments')
+                                                    <a href="{{ route('departments.show', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
+                                                @endcan
+                                            </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
