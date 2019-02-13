@@ -132,6 +132,8 @@ class DelegationController extends Controller
      */
     public function destroy(Delegation $delegation)
     {
-        //
+        $delegation->delete();
+
+        return back()->with('status', 'Delegation deleted');
     }
 }
