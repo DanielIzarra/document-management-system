@@ -101,7 +101,14 @@ class PermissionsTableSeeder extends Seeder
             'slug'         => 'index_users_company',
             'description'  => 'Muestra los usuarios de una empresa',
             'isroot'       => '0',
-        ]);  
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver sucursales de una empresa',
+            'slug'         => 'index_delegations_company',
+            'description'  => 'Muestra todas las sucursales de una empresa',
+            'isroot'       => '0',
+        ]);
 
         Permission::create([
             'name'         => 'Ver información de la empresa',
@@ -139,9 +146,9 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name'         => 'Ver sucursales de una empresa',
+            'name'         => 'Ver sucursales del sistema',
             'slug'         => 'index_delegations',
-            'description'  => 'Muestra todas las sucursales de una empresa',
+            'description'  => 'Muestra todas las sucursales del sistema',
             'isroot'       => '0',
         ]);
 
