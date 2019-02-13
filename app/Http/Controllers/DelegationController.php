@@ -86,7 +86,7 @@ class DelegationController extends Controller
      */
     public function edit(Delegation $delegation)
     {
-        //
+        return view('delegations.edit', compact('delegation'));
     }
 
     /**
@@ -98,7 +98,30 @@ class DelegationController extends Controller
      */
     public function update(Request $request, Delegation $delegation)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:191|unique:delegations',
+
+        ]);
+
+        $delegation->name = request('name');
+
+        if (request('email')) {
+            $this->validate(request(), [
+                'email' => 'string|email|max:191',
+            ]);
+
+            $delegation->email = request('email');
+        }
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $delegation->save();
+
+        return back()->with('status', 'Updated delegation data');
     }
 
     /**
