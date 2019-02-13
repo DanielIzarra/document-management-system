@@ -45,8 +45,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('companies/store', 'CompanyController@store')->name('companies.store')->middleware('permission:create_companies');
     Route::get('companies/index', 'CompanyController@index')->name('companies.index')->middleware('permission:index_companies');
     Route::get('companies', 'CompanyController@index_administrator')->name('companies.index_administrator')->middleware('permission:index_admin_companies');
-    Route::get('companies/index/{company}', 'CompanyController@index_users_company')->name('companies.index_users_company')->middleware('permission:index_users_company');
-    Route::get('companies/company/{company}', 'CompanyController@index_delegations_company')->name('delegations.index')->middleware('permission:index_delegations_company');
+    Route::get('companies/users/{company}', 'CompanyController@index_users_company')->name('companies.index_users_company')->middleware('permission:index_users_company');
+    Route::get('companies/delegations/{company}', 'CompanyController@index_delegations_company')->name('delegations.index_delegations_company')->middleware('permission:index_delegations_company');
     Route::get('companies/{company}', 'CompanyController@show')->name('companies.show')->middleware('permission:show_companies');
     Route::patch('companies/{company}', 'CompanyController@update')->name('companies.update')->middleware('permission:edit_companies'); 
     Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit')->middleware('permission:edit_companies');
@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('delegations/create', 'DelegationController@create')->name('delegations.create')->middleware('permission:create_delegations');
     Route::post('delegations/store', 'DelegationController@store')->name('delegations.store')->middleware('permission:create_delegations');
+    Route::get('delegations/index', 'DelegationController@index')->name('delegations.index')->middleware('permission:index_delegations');
     Route::get('delegations/{delegation}', 'DelegationController@show')->name('delegations.show')->middleware('permission:show_delegations');
     Route::patch('delegations/{delegation}', 'DelegationController@update')->name('delegations.update')->middleware('permission:edit_delegations'); 
     Route::get('delegations/{delegation}/edit', 'DelegationController@edit')->name('delegations.edit')->middleware('permission:edit_delegations');

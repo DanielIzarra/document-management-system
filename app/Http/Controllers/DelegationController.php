@@ -18,7 +18,9 @@ class DelegationController extends Controller
      */
     public function index(Company $company)
     {
-        //
+        $delegations = Delegation::paginate(20);
+
+        return view('delegations.index', compact('delegations'));
     }
 
     /**

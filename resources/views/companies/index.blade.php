@@ -42,7 +42,7 @@
                                     </td>
                                     <td>
                                         @can('index_delegations_companies')
-                                            <a href="{{ route('delegations.index', $company->id) }}" class="btn btn-sm btn-outline-dark float-right">Delegations</a>
+                                            <a href="{{ route('delegations.index_delegations_company', $company->id) }}" class="btn btn-sm btn-outline-dark float-right">Delegations</a>
                                         @endcan
                                     </td> 
                                     <td>
