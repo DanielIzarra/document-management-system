@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div>                    
                         <div>
-                            @can('delegations_create')
+                            @can('create_delegations')
                                 <a href="{{ route('delegations.create')}}" class="btn btn-sm btn-primary float-right">create delegation</a>
                             @endcan                
                         </div>
