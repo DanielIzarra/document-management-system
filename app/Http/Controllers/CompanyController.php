@@ -182,21 +182,24 @@ class CompanyController extends Controller
     }
 
     /**
-     * Assign user (administrator) to companies.
+     * Show the form for creating new user assigment(administrator) to companies or delegations.
      *
-     * @param  \App\Company  $company
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function create_assign_companies(User $user)
     {
         $companies = Company::all();
         $checked_companies = $user->companies()->get();
+        $delegations = Delegation::all();
+        $checked_delegations = $user->delegations()->get();
 
-        return view('companies.assign_admin', compact('user', 'companies', 'checked_companies'));
+        return view('companies.assign_admin', compact('user', 'companies', 'checked_companies', 
+                    'delegations', 'checked_delegations'));
     }
 
     /**
-     * Assign user (administrator) to companies.
+     * Stores a newly created user assigment(administrator) to companies or delegations in storage.
      * 
      * @param  \App\User  $user
      * @param  \Illuminate\Http\Request  $request
@@ -205,7 +208,8 @@ class CompanyController extends Controller
     public function store_assign_companies(Request $request, User $user)
     {
         $user->companies()->sync($request->get('companies'));        
+        $user->delegations()->sync($request->get('delegations'));        
 
-        return back()->with('status', 'Assigned companies');
+        return back()->with('status', 'Assigned companies or delegations');
     }
 }

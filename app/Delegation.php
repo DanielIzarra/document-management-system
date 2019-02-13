@@ -19,4 +19,12 @@ class Delegation extends Model
     {
         return $this->belongsTo('App\Company');
     }
+
+    /**
+     * The users that belong to the delegation.
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
 }
