@@ -139,10 +139,10 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name'         => 'Ver sucursales del sistema',
+            'name'         => 'Ver sucursales de una empresa',
             'slug'         => 'index_delegations',
-            'description'  => 'Muestra todas las sucursales del sistema',
-            'isroot'       => '1',
+            'description'  => 'Muestra todas las sucursales de una empresa',
+            'isroot'       => '0',
         ]);
 
         Permission::create([

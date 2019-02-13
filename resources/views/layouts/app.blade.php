@@ -48,9 +48,9 @@
                                 <a class="nav-link" href="{{ route('companies.index_administrator') }}">{{ __('Company') }}</a>
                             </li>
                         @endcan                        
-                        @can('create_delegations')
+                        @can('index_delegations')
                             <li class="nav-item <?php $isActivated = isset($delegations) ? 'active' : ''; echo $isActivated; ?>">
-                                <a class="nav-link" href="{{ route('delegations.create') }}">{{ __('Delegations') }}</a>
+                                <a class="nav-link" href="{{ route('delegations.index') }}">{{ __('Delegations') }}</a>
                             </li>
                         @endcan                        
                         @can('index_roles')

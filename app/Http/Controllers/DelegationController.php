@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Delegation;
+use App\Company;
 use Validator;
 use Redirect;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class DelegationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Company $company)
     {
         //
     }
@@ -74,7 +75,7 @@ class DelegationController extends Controller
      */
     public function show(Delegation $delegation)
     {
-        //
+        return view('delegations.show', compact('delegation'));
     }
 
     /**
