@@ -28,9 +28,11 @@ class DelegationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_administrator(Company $company)
+    public function index_administrator(Delegation $delegation)
     {
-        //
+        $delegations = Auth::user()->delegations()->paginate(5);
+
+        return view('delegations.index', compact('delegations'));
     }
 
     /**

@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('delegations/create', 'DelegationController@create')->name('delegations.create')->middleware('permission:create_delegations');
     Route::post('delegations/store', 'DelegationController@store')->name('delegations.store')->middleware('permission:create_delegations');
     Route::get('delegations/index', 'DelegationController@index')->name('delegations.index')->middleware('permission:index_delegations');
+    Route::get('delegations', 'DelegationController@index_administrator')->name('delegations.index_administrator')->middleware('permission:index_admin_delegations');
     Route::get('delegations/{delegation}', 'DelegationController@show')->name('delegations.show')->middleware('permission:show_delegations');
     Route::patch('delegations/{delegation}', 'DelegationController@update')->name('delegations.update')->middleware('permission:edit_delegations'); 
     Route::get('delegations/{delegation}/edit', 'DelegationController@edit')->name('delegations.edit')->middleware('permission:edit_delegations');
