@@ -142,7 +142,7 @@ class PermissionsTableSeeder extends Seeder
             'name'         => 'Crear sucursal',
             'slug'         => 'create_delegations',
             'description'  => 'Permite crear una nueva sucursal',
-            'isroot'       => '1',
+            'isroot'       => '0',
         ]);
 
         Permission::create([
@@ -184,14 +184,63 @@ class PermissionsTableSeeder extends Seeder
             'name'         => 'Eliminar sucursal',
             'slug'         => 'destroy_delegations',
             'description'  => 'Permite eliminar una sucursal',
-            'isroot'       => '1',
+            'isroot'       => '0',
         ]);
 
         Permission::create([
             'name'         => 'Asignar/desasignar administrador a sucursal',
             'slug'         => 'assign_admin_delegations',
             'description'  => 'Permite la asignación de un administrador a una o varias sucursales',
-            'isroot'       => '1',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Crear departamento',
+            'slug'         => 'create_departments',
+            'description'  => 'Permite crear un nuevo departamento',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver departamentos administrados',
+            'slug'         => 'index_admin_departments',
+            'description'  => 'Muestra los departamentos administrados por un usuario',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver usuarios de un departamento',
+            'slug'         => 'index_users_department',
+            'description'  => 'Muestra los usuarios de un departamento',
+            'isroot'       => '0',
+        ]);  
+
+        Permission::create([
+            'name'         => 'Ver información del departamento',
+            'slug'         => 'show_departments',
+            'description'  => 'Permite ver la información de un departamento',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Editar información del departamento',
+            'slug'         => 'edit_departments',
+            'description'  => 'Permite editar la información del departamento',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Eliminar departamento',
+            'slug'         => 'destroy_departments',
+            'description'  => 'Permite eliminar un departamento',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Asignar/desasignar administrador a departamento',
+            'slug'         => 'assign_admin_departments',
+            'description'  => 'Permite la asignación de un administrador a uno o varios departamentos',
+            'isroot'       => '0',
         ]);
     }
 }

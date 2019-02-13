@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use Validator;
+use Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepartmentController extends Controller
 {
@@ -24,7 +27,10 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Auth::user()->companies()->get();
+        $delegations = Auth::user()->delegations()->get();
+
+        return view('departments.create', compact('companies', 'delegations'));
     }
 
     /**
@@ -33,9 +39,39 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Department $department)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:191',
+        ]);
+
+        if (request('email')){
+            $this->validate(request(), [
+                'email' => 'string|email|max:191',
+            ]);
+
+            $department->email = request('email');
+        }
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $department->name = request('name');
+        $department->email = request('email');
+
+        if(request('company_id') != 0){
+            $department->company_id = request('company_id');
+        }
+        if(request('delegation_id') != 0){
+            $department->delegation_id = request('delegation_id');
+        }
+                
+        $department->save();
+
+        return back()->with('status', 'Department created');
     }
 
     /**

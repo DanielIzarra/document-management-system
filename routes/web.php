@@ -66,4 +66,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('delegations/{delegation}/edit', 'DelegationController@edit')->name('delegations.edit')->middleware('permission:edit_delegations');
     Route::delete('delegations/{delegation}', 'DelegationController@destroy')->name('delegations.destroy')->middleware('permission:destroy_delegations');
 
+    //Departments
+
+    Route::get('departments/create', 'DepartmentController@create')->name('departments.create')->middleware('permission:create_departments');
+    Route::post('departments/store', 'DepartmentController@store')->name('departments.store')->middleware('permission:create_departments');
 });
