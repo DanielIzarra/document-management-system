@@ -33,6 +33,11 @@
                                                     <a href="{{ route('departments.show', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
                                                 @endcan
                                             </td>
+                                            <td>
+                                                @can('edit_departments')
+                                                    <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Edit</a>
+                                                @endcan
+                                            </td>
 
                                         </tr>
                                     @endforeach

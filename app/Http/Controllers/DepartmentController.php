@@ -93,7 +93,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('departments.edit', compact('department'));
     }
 
     /**
@@ -105,7 +105,30 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:191',
+
+        ]);
+
+        $department->name = request('name');
+
+        if (request('email')) {
+            $this->validate(request(), [
+                'email' => 'string|email|max:191',
+            ]);
+
+            $department->email = request('email');
+        }
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $department->save();
+
+        return back()->with('status', 'Updated department data');
     }
 
     /**
