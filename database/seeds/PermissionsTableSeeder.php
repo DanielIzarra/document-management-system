@@ -171,7 +171,14 @@ class PermissionsTableSeeder extends Seeder
             'slug'         => 'index_users_delegation',
             'description'  => 'Muestra los usuarios de una sucursal',
             'isroot'       => '0',
-        ]);  
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver departamentos de una sucursal',
+            'slug'         => 'index_departments_delegation',
+            'description'  => 'Muestra todos los departamentos de una sucursal',
+            'isroot'       => '0',
+        ]);
 
         Permission::create([
             'name'         => 'Ver información de la sucursal',

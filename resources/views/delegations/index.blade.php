@@ -19,7 +19,7 @@
                                     <tr>
                                         <th width="50px">id</th>
                                         <th>Name</th>
-                                        <th colspan="4" class="col-md-2">&nbsp;</th>
+                                        <th colspan="5" class="col-md-2">&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -31,6 +31,11 @@
                                             <td>
                                                 @can('index_users_delegation')
                                                     <a href="{{ route('delegations.index_users_delegation', $delegation->id) }}" class="btn btn-sm btn-outline-dark float-right">Users</a>
+                                                @endcan
+                                            </td>
+                                            <td>
+                                                @can('index_departments_delegation')
+                                                    <a href="{{ route('departments.index_departments_delegation', $delegation->id) }}" class="btn btn-sm btn-outline-dark float-right">Departments</a>
                                                 @endcan
                                             </td>
                                             <td>

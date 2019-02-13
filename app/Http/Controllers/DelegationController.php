@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Delegation;
+use App\Department;
 use App\Company;
 use Validator;
 use Redirect;
@@ -45,6 +46,18 @@ class DelegationController extends Controller
         $users = $delegation->users()->get();
 
         return view('users.index', compact('users'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_departments_delegation(Delegation $delegation)
+    {
+        $departments = Department::where('delegation_id', '=', $delegation->id)->paginate(5);
+
+        return view('departments.index', compact('departments'));
     }
 
     /**
