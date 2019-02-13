@@ -38,7 +38,15 @@
                                                     <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Edit</a>
                                                 @endcan
                                             </td>
-
+                                            <td>
+                                                @can('destroy_departments')
+                                                    <form action="{{ route('departments.destroy', $department->id) }}"  method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-sm btn-outline-danger float-right" type="submit">Delete</button>
+                                                    </form>
+                                                @endcan
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
