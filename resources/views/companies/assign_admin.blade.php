@@ -16,7 +16,7 @@
                 @csrf
     
                 <div class="form row">
-                    <div class="col-md-12"> 
+                    <div class="col-md-6"> 
                         <div class="card">
                             <div class="card-header"><h4>Companies assignment</h4></div>
                             <div class="card-body">
@@ -39,6 +39,37 @@
                                             <label class="form-check-inline">
                                                 <input class="form-check-input" type="checkbox" name="companies[]" value="{{ $company->id }}">
                                                 {{ $company->name }}
+                                            </label>
+                                        </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"> 
+                        <div class="card">
+                            <div class="card-header"><h4>Delegations assignment</h4></div>
+                            <div class="card-body">
+                                <ul class="list-unstyled" style="height: 400px; overflow-y: auto;">
+                                    @foreach($delegations as $delegation)
+                                        @php($change = True)
+                                        @foreach($checked_delegations as $checked_delegation)
+                                            @if($delegation->id == $checked_delegation->id)
+                                            <li>
+                                                <label class="form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" name="delegations[]" value="{{ $delegation->id }}" checked>
+                                                    {{ $delegation->name }}
+                                                    @php($change = False)
+                                                </label>
+                                            </li>
+                                            @endif
+                                        @endforeach
+                                        @if($change == True)
+                                        <li>
+                                            <label class="form-check-inline">
+                                                <input class="form-check-input" type="checkbox" name="delegations[]" value="{{ $delegation->id }}">
+                                                {{ $delegation->name }}
                                             </label>
                                         </li>
                                         @endif

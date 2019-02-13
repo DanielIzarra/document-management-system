@@ -4,28 +4,27 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Delegation extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
-     */    
+     */
     protected $fillable = [
-        'name', 'denomination', 'cif', 'email',
+        'name', 'email', 'company_id'
     ];
 
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
+
     /**
-     * The users that belong to the company.
+     * The users that belong to the delegation.
      */
     public function users()
     {
         return $this->belongsToMany('App\User')->withTimestamps();
-    }  
-    
-    public function delegations()
-    {
-        return $this->hasMany('App\Delegation');
     }
-
 }

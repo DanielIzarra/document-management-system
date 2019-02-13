@@ -76,6 +76,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">       
+                        <div class="card">
+                            <div class="card-header"><h4>User roles</h4></div> 
+                            <div class="card-body">
+                                <ul class="list-unstyled" style="height: 195px; overflow-y: auto;">  
+                                    @foreach($allroles as $role)
+                                        @if($role->name != 'root')
+                                        <li title="{{ $role->description ?: $role->name }}">
+                                            <label class="form-check-inline">
+                                                <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}"
+                                                @if (in_array($role->id, old('roles', []))) checked @endif>
+                                                {{ $role->name }}
+                                                ({{ $role->description ?: $role->name }})                                      
+                                            </label>
+                                        </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <br>
+                <div class="form-row">
                     <div class="col-md-6">          
                         <div class="card">
                             <div class="card-header"><h4>Companies assignment</h4></div>
@@ -94,25 +118,19 @@
                             </div>
                         </div>
                     </div>
-                </div> 
-                <br>
-                <div class="form-row">
-                    <div class="col-md-6">       
+                    <div class="col-md-6">          
                         <div class="card">
-                            <div class="card-header"><h4>User roles</h4></div> 
+                            <div class="card-header"><h4>Delegations assignment</h4></div>
                             <div class="card-body">
-                                <ul class="list-unstyled" style="height: 195px; overflow-y: auto;">  
-                                    @foreach($allroles as $role)
-                                        @if($role->name != 'root')
-                                        <li title="{{ $role->description ?: $role->name }}">
+                                <ul class="list-unstyled" style="height: 195px; overflow-y: auto;">
+                                    @foreach($delegations as $delegation)
+                                        <li>
                                             <label class="form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}"
-                                                @if (in_array($role->id, old('roles', []))) checked @endif>
-                                                {{ $role->name }}
-                                                ({{ $role->description ?: $role->name }})                                      
+                                                <input class="form-check-input" type="checkbox" name="delegations[]" value="{{ $delegation->id }}"
+                                                @if (in_array($delegation->id, old('delegations', []))) checked @endif>
+                                                {{ $delegation->name }}
                                             </label>
                                         </li>
-                                        @endif
                                     @endforeach
                                 </ul>
                             </div>

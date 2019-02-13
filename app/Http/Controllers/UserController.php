@@ -35,9 +35,10 @@ class UserController extends Controller
     public function create()
     {
         $allroles = Role::all();
-        $companies = Auth::user()->companies()->get();        
+        $companies = Auth::user()->companies()->get();
+        $delegations = Auth::user()->delegations()->get();        
 
-        return view('users.create', compact('allroles', 'companies'));
+        return view('users.create', compact('allroles', 'companies', 'delegations'));
     }
 
     /**
@@ -67,6 +68,7 @@ class UserController extends Controller
         $user->save();
 
         $user->companies()->sync($request->get('companies'));
+        $user->delegations()->sync($request->get('delegations'));
         $user->roles()->sync($request->get('roles'));
 
         return back()->with('status', 'User created');
@@ -96,7 +98,7 @@ class UserController extends Controller
         $roles = Role::all();
         $checked_roles = $user->roles()->get();
         $companies = Auth::user()->companies()->get();
-        $checked_companies = $user->companies()->get();       
+        $checked_companies = $user->companies()->get();  
 
         return view('users.edit', compact('user', 'permissions', 'checked_permissions', 
                     'roles', 'checked_roles', 'companies', 'checked_companies'));

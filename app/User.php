@@ -35,5 +35,13 @@ class User extends Authenticatable
     public function companies()
     {
         return $this->belongsToMany('App\Company')->withTimestamps();
-    }    
+    }
+
+    /**
+     * The delegations that belong to the user.
+     */
+    public function delegations()
+    {
+        return $this->belongsToMany('App\Delegation')->withTimestamps();
+    }
 }
