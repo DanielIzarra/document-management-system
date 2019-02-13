@@ -111,6 +111,13 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
+            'name'         => 'Ver departamentos de una empresa',
+            'slug'         => 'index_departments_company',
+            'description'  => 'Muestra todos los departamentos de una empresa',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
             'name'         => 'Ver información de la empresa',
             'slug'         => 'show_companies',
             'description'  => 'Permite ver la información de una empresa',

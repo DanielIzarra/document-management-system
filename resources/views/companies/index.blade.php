@@ -26,7 +26,7 @@
                                 <tr>
                                     <th width="50px">id</th>
                                     <th>Name</th>
-                                    <th colspan="5" class="col-md-1">&nbsp;</th>
+                                    <th colspan="6" class="col-md-1">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,10 +41,15 @@
                                         @endcan
                                     </td>
                                     <td>
-                                        @can('index_delegations_companies')
+                                        @can('index_delegations_company')
                                             <a href="{{ route('delegations.index_delegations_company', $company->id) }}" class="btn btn-sm btn-outline-dark float-right">Delegations</a>
                                         @endcan
-                                    </td> 
+                                    </td>
+                                    <td>
+                                        @can('index_departments_company')
+                                            <a href="{{ route('departments.index_departments_company', $company->id) }}" class="btn btn-sm btn-outline-dark float-right">Departments</a>
+                                        @endcan
+                                    </td>
                                     <td>
                                         @can('companies_show')
                                             <a href="{{ route('companies.show', $company->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>

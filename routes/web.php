@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('companies', 'CompanyController@index_administrator')->name('companies.index_administrator')->middleware('permission:index_admin_companies');
     Route::get('companies/users/{company}', 'CompanyController@index_users_company')->name('companies.index_users_company')->middleware('permission:index_users_company');
     Route::get('companies/delegations/{company}', 'CompanyController@index_delegations_company')->name('delegations.index_delegations_company')->middleware('permission:index_delegations_company');
+    Route::get('companies/departments/{company}', 'CompanyController@index_departments_company')->name('departments.index_departments_company')->middleware('permission:index_departments_company');
     Route::get('companies/{company}', 'CompanyController@show')->name('companies.show')->middleware('permission:show_companies');
     Route::patch('companies/{company}', 'CompanyController@update')->name('companies.update')->middleware('permission:edit_companies'); 
     Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companies.edit')->middleware('permission:edit_companies');
