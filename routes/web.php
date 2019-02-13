@@ -52,3 +52,8 @@ Route::get('companies/{company}/edit', 'CompanyController@edit')->name('companie
 Route::delete('companies/{company}', 'CompanyController@destroy')->name('companies.destroy')->middleware('permission:destroy_companies');
 Route::get('companies/{user}/assigncreate', 'CompanyController@create_assign_companies')->name('companies.create_assign_companies')->middleware('permission:assign_admin_companies');
 Route::post('companies/{user}/assignstore', 'CompanyController@store_assign_companies')->name('companies.store_assign_companies')->middleware('permission:assign_admin_companies');
+
+//Delegations
+
+Route::get('delegations/create', 'DelegationController@create')->name('delegations.create')->middleware('permission:create_delegations');
+Route::post('delegations/store', 'DelegationController@store')->name('delegations.store')->middleware('permission:create_delegations');

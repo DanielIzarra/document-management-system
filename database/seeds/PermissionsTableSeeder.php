@@ -130,5 +130,61 @@ class PermissionsTableSeeder extends Seeder
             'description'  => 'Permite la asignación de un administrador a una o varias empresas',
             'isroot'       => '1',
         ]);
+
+        Permission::create([
+            'name'         => 'Crear sucursal',
+            'slug'         => 'create_delegations',
+            'description'  => 'Permite crear una nueva sucursal',
+            'isroot'       => '1',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver sucursales del sistema',
+            'slug'         => 'index_delegations',
+            'description'  => 'Muestra todas las sucursales del sistema',
+            'isroot'       => '1',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver sucursales administradas',
+            'slug'         => 'index_admin_delegations',
+            'description'  => 'Muestra las sucursales administradas por un usuario',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver usuarios de una sucursal',
+            'slug'         => 'index_users_delegation',
+            'description'  => 'Muestra los usuarios de una sucursal',
+            'isroot'       => '0',
+        ]);  
+
+        Permission::create([
+            'name'         => 'Ver información de la sucursal',
+            'slug'         => 'show_delegations',
+            'description'  => 'Permite ver la información de una sucursal',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Editar información de la sucursal',
+            'slug'         => 'edit_delegations',
+            'description'  => 'Permite editar la información de la sucursal',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Eliminar sucursal',
+            'slug'         => 'destroy_delegations',
+            'description'  => 'Permite eliminar una sucursal',
+            'isroot'       => '1',
+        ]);
+
+        Permission::create([
+            'name'         => 'Asignar/desasignar administrador a sucursal',
+            'slug'         => 'assign_admin_delegations',
+            'description'  => 'Permite la asignación de un administrador a una o varias sucursales',
+            'isroot'       => '1',
+        ]);
     }
 }

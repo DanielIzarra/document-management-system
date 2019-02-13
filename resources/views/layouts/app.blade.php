@@ -34,9 +34,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @can('index_users')
-                        <li class="nav-item <?php $isActivated = isset($users) ? 'active' : ''; echo $isActivated; ?>">
-                            <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
-                        </li>
+                            <li class="nav-item <?php $isActivated = isset($users) ? 'active' : ''; echo $isActivated; ?>">
+                                <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
+                            </li>
                         @endcan
                         @can('index_companies')
                             <li class="nav-item <?php $isActivated = isset($companies) ? 'active' : ''; echo $isActivated; ?>">
@@ -44,9 +44,14 @@
                             </li>
                         @endcan
                         @can('index_admin_companies')
-                        <li class="nav-item <?php $isActivated = isset($companies) ? 'active' : ''; echo $isActivated; ?>">
-                            <a class="nav-link" href="{{ route('companies.index_administrator') }}">{{ __('Company') }}</a>
-                        </li>
+                            <li class="nav-item <?php $isActivated = isset($companies) ? 'active' : ''; echo $isActivated; ?>">
+                                <a class="nav-link" href="{{ route('companies.index_administrator') }}">{{ __('Company') }}</a>
+                            </li>
+                        @endcan                        
+                        @can('create_delegations')
+                            <li class="nav-item <?php $isActivated = isset($delegations) ? 'active' : ''; echo $isActivated; ?>">
+                                <a class="nav-link" href="{{ route('delegations.create') }}">{{ __('Delegations') }}</a>
+                            </li>
                         @endcan                        
                         @can('index_roles')
                             <li class="nav-item <?php $isActivated = isset($roles) ? 'active' : ''; echo $isActivated; ?>">
