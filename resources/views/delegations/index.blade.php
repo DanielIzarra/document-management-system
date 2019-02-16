@@ -15,7 +15,7 @@
                             @endif
                         </div>
                         <br><br>
-                        @if(isset($delegations))
+                        <div>
                             <table class="table table-striped table-hover">
                                 <thead class="thead-dark">
                                     <tr>
@@ -63,9 +63,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        @else 
-                            <span class="border-left">No tiene asignada ninguna delegación.</span>
-                        @endif                        
+                        </div>                       
                     </div>
                 </div>
             </div>

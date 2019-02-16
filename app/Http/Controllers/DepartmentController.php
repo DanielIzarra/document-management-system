@@ -17,9 +17,11 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index_administrator(Department $department)
     {
-        //
+        $departments = Auth::user()->departments()->paginate(5);
+
+        return view('departments.index', compact('departments'));
     }
 
     /**

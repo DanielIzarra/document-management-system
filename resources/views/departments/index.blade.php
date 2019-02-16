@@ -20,7 +20,7 @@
                             @endif
                         </div>
                         <br><br>
-                        @if(isset($departments))
+                        <div>
                             <table class="table table-striped table-hover">
                                 <thead class="thead-dark">
                                     <tr>
@@ -64,9 +64,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        @else 
-                            <span class="border-left">No tiene asignado ningún departamento.</span>
-                        @endif                        
+                        </div>
                     </div>
                 </div>
             </div>
