@@ -41,13 +41,6 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name'         => 'Crear usuario',
-            'slug'         => 'create_user',
-            'description'  => 'Permite al superusuario crear un nuevo usuario en el sistema',
-            'isroot'       => '1',
-        ]);
-
-        Permission::create([
             'name'         => 'Crear usuario de empresa',
             'slug'         => 'create_user_company',
             'description'  => 'Permite crear un nuevo usuario en la empresa',
@@ -228,9 +221,16 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name'         => 'Crear departamento',
-            'slug'         => 'create_departments',
-            'description'  => 'Permite crear un nuevo departamento',
+            'name'         => 'Crear departamento de empresa',
+            'slug'         => 'create_department_company',
+            'description'  => 'Permite crear un nuevo departamento en una empresa',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Crear departamento de sucursal',
+            'slug'         => 'create_department_delegation',
+            'description'  => 'Permite crear un nuevo departamento en una sucursal',
             'isroot'       => '0',
         ]);
 

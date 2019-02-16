@@ -8,9 +8,16 @@
                 <div class="card-body">
                     <div>                    
                         <div>
-                            @can('create_departments')
-                                <a href="{{ route('departments.create')}}" class="btn btn-sm btn-primary float-right">create department</a>
-                            @endcan                
+                            @if(isset($company))
+                                @can('create_department_company')
+                                    <a href="{{ route('departments.create_department_company', $company)}}" class="btn btn-sm btn-primary float-right">create company department</a>
+                                @endcan
+                            @endif
+                            @if(isset($delegation))
+                                @can('create_department_delegation')
+                                    <a href="{{ route('departments.create_department_delegation', $delegation)}}" class="btn btn-sm btn-primary float-right">create delegation department</a>
+                                @endcan
+                            @endif
                         </div>
                         <br><br>
                         @if(isset($departments))

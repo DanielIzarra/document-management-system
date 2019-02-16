@@ -34,18 +34,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $allroles = Role::all();
-
-        return view('users.create', compact('allroles'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create_user_company(Company $company)
     {
         $allroles = Role::all();
@@ -103,13 +91,13 @@ class UserController extends Controller
 
         $user->save();
 
-        if($request->company_id != null){
+        if(isset($request->company_id)){
             $user->companies()->sync($request->company_id);
         }
-        if ($request->delegation_id != null) {
+        if (isset($request->delegation_id)) {
             $user->delegations()->sync($request->delegation_id);
         }
-        if ($request->delegation_id != null) {
+        if (isset($request->delegation_id)) {
             $user->departments()->sync($request->department_id);
         }
 

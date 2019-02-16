@@ -45,7 +45,7 @@ class DelegationController extends Controller
     {
         $users = $delegation->users()->get();
 
-        return view('users.index_users_delegation', compact('users', 'delegation'));
+        return view('users.index', compact('users', 'delegation'));
     }
 
     /**
@@ -57,7 +57,7 @@ class DelegationController extends Controller
     {
         $departments = Department::where('delegation_id', '=', $delegation->id)->paginate(5);
 
-        return view('departments.index', compact('departments'));
+        return view('departments.index', compact('departments', 'delegation'));
     }
 
     /**

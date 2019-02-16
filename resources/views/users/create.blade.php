@@ -112,8 +112,7 @@
                 <?php endif; ?>
                 <?php if (isset($department)): ?>
                         <input type="hidden" name="department_id" value="{{ $department->id }}">
-                <?php endif; ?>
-                
+                <?php endif; ?>                
             </form>          
         </div>
     </div>

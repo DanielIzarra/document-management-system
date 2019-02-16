@@ -15,7 +15,7 @@
             <form method="POST" action="{{ route('departments.store') }}">
                 @csrf 
                 <div class="form-row"> 
-                    <div class="col-md-6">          
+                    <div class="col-md-12">          
                         <div class="card">
                             <div class="card-header"><h4>Department data</h4></div>
                             <div class="card-body">
@@ -51,31 +51,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">          
-                        <div class="card">
-                            <div class="card-header"><h4>Company or delegation assignment</h4></div>
-                            <div class="card-body">
-                                <strong><p>{{ __('Select only one of both option, company or delegation:') }}</p></strong>
-                                <select name="company_id">
-                                    <option selected="true" value="0">{{ __('Select one company') }}</option>
-                                    @foreach($companies as $company)
-                                        <option value="{{ $company->id }}">
-                                            {{ $company->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <strong><p>{{ __('or') }}</p></strong>
-                                <select name="delegation_id">
-                                    <option selected="true" value="0">{{ __('Select one delegation') }}</option>
-                                    @foreach($delegations as $delegation)
-                                        <option value="{{ $delegation->id }}">
-                                            {{ $delegation->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <br>
                 <div class="col-md-1 offset-md-11">
@@ -83,6 +58,12 @@
                         {{ __('Save') }}
                     </button>
                 </div>
+                @if(isset($company))
+                    <input type="hidden" name="company_id" value="{{ $company->id }}">
+                @endif
+                @if(isset($delegation))
+                    <input type="hidden" name="delegation_id" value="{{ $delegation->id }}">
+                @endif
             </form>          
         </div>
     </div>

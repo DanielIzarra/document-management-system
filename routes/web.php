@@ -30,11 +30,7 @@ Route::middleware(['auth'])->group(function(){
     Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:destroy_roles');
 
     // Users
-
-    Route::get('users/create', 'UserController@create')
-        ->name('users.create')->middleware('permission:create_user');
-    Route::post('users/store', 'UserController@store')
-        ->name('users.store')->middleware('permission:create_user');    
+   
     Route::get('users/create_user_company/{company}', 'UserController@create_user_company')
         ->name('users.create_user_company')->middleware('permission:create_user_company');
     Route::post('users/store', 'UserController@store')
@@ -112,10 +108,17 @@ Route::middleware(['auth'])->group(function(){
 
     //Departments
 
-    Route::get('departments/create', 'DepartmentController@create')
-        ->name('departments.create')->middleware('permission:create_departments');
+    Route::get('users/create_user_company/{company}', 'UserController@create_user_company')
+    ->name('users.create_user_company')->middleware('permission:create_user_company');
+
+    Route::get('departments/create_department_company/{company}', 'DepartmentController@create_department_company')
+        ->name('departments.create_department_company')->middleware('permission:create_department_company');
     Route::post('departments/store', 'DepartmentController@store')
-        ->name('departments.store')->middleware('permission:create_departments');
+        ->name('departments.store')->middleware('permission:create_department_company');
+    Route::get('departments/create_department_delegation/{delegation}', 'DepartmentController@create_department_delegation')
+        ->name('departments.create_department_delegation')->middleware('permission:create_department_delegation');
+    Route::post('departments/store', 'DepartmentController@store')
+        ->name('departments.store')->middleware('permission:create_department_delegation');
     Route::get('departments/{department}', 'DepartmentController@show')
         ->name('departments.show')->middleware('permission:show_departments');
     Route::patch('departments/{department}', 'DepartmentController@update')

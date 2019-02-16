@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Delegation;
+use App\Company;
 use Validator;
 use Redirect;
 use Illuminate\Http\Request;
@@ -25,12 +27,19 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create_department_company(Company $company)
     {
-        $companies = Auth::user()->companies()->get();
-        $delegations = Auth::user()->delegations()->get();
+        return view('departments.create', compact('company'));
+    }
 
-        return view('departments.create', compact('companies', 'delegations'));
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create_department_delegation(Delegation $delegation)
+    {
+        return view('departments.create', compact('delegation'));
     }
 
     /**
@@ -62,10 +71,10 @@ class DepartmentController extends Controller
         $department->name = request('name');
         $department->email = request('email');
 
-        if(request('company_id') != 0){
+        if(isset($request->company_id)){
             $department->company_id = request('company_id');
         }
-        if(request('delegation_id') != 0){
+        if(isset($request->delegation_id)){
             $department->delegation_id = request('delegation_id');
         }
                 

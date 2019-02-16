@@ -46,7 +46,7 @@ class CompanyController extends Controller
     {
         $users = $company->users()->get();
 
-        return view('users.index_users_company', compact('users', 'company'));
+        return view('users.index', compact('users', 'company'));
     }
 
     /**
@@ -70,7 +70,7 @@ class CompanyController extends Controller
     {
         $departments = Department::where('company_id', '=', $company->id)->paginate(5);
 
-        return view('departments.index', compact('departments'));
+        return view('departments.index', compact('departments', 'company'));
     }
 
     /**
