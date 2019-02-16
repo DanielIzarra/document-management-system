@@ -119,6 +119,8 @@ Route::middleware(['auth'])->group(function(){
         ->name('departments.create_department_delegation')->middleware('permission:create_department_delegation');
     Route::post('departments/store', 'DepartmentController@store')
         ->name('departments.store')->middleware('permission:create_department_delegation');
+    Route::get('departments/users/{department}', 'DepartmentController@index_users_department')
+        ->name('departments.index_users_department')->middleware('permission:index_users_department');
     Route::get('departments/{department}', 'DepartmentController@show')
         ->name('departments.show')->middleware('permission:show_departments');
     Route::patch('departments/{department}', 'DepartmentController@update')

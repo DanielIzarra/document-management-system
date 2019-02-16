@@ -97,7 +97,7 @@ class UserController extends Controller
         if (isset($request->delegation_id)) {
             $user->delegations()->sync($request->delegation_id);
         }
-        if (isset($request->delegation_id)) {
+        if (isset($request->department_id)) {
             $user->departments()->sync($request->department_id);
         }
 

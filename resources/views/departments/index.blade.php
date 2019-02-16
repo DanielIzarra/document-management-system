@@ -36,6 +36,12 @@
                                             <td>{{ $department->name }}</td>
 
                                             <td>
+                                                @can('index_users_department')
+                                                    <a href="{{ route('departments.index_users_department', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Users</a>
+                                                @endcan
+                                            </td>
+
+                                            <td>
                                                 @can('show_departments')
                                                     <a href="{{ route('departments.show', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
                                                 @endcan

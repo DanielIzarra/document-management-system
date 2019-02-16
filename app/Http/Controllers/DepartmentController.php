@@ -23,6 +23,18 @@ class DepartmentController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_users_department(Department $department)
+    {
+        $users = $department->users()->get();
+
+        return view('users.index', compact('users', 'department'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
