@@ -8,23 +8,11 @@
                 <div class="card-body">
                     <div>                    
                         <div>
-<<<<<<< Updated upstream
-                            @can('create_delegations')
-                                <a href="{{ route('delegations.create')}}" class="btn btn-sm btn-primary float-right">create delegation</a>
-                            @endcan                
-=======
-<<<<<<< Updated upstream
-                            @can('create_delegations')
-                                <a href="{{ route('delegations.create')}}" class="btn btn-sm btn-primary float-right">create delegation</a>
-                            @endcan                
-=======
                             @if(isset($company))
                                 @can('create_delegations')
                                     <a href="{{ route('delegations.create', $company)}}" class="btn btn-sm btn-primary float-right">create delegation</a>
                                 @endcan
                             @endif
->>>>>>> Stashed changes
->>>>>>> Stashed changes
                         </div>
                         <br><br>
                         @if(isset($delegations))

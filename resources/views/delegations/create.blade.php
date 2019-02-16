@@ -14,18 +14,8 @@
             @endif  
             <form method="POST" action="{{ route('delegations.store') }}">
                 @csrf 
-<<<<<<< Updated upstream
-                <div class="form-row"> 
-                    <div class="col-md-6">          
-=======
-<<<<<<< Updated upstream
-                <div class="form-row"> 
-                    <div class="col-md-6">          
-=======
                 <div class="form-row">
-                    <div class="col-md-12">          
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header"><h4>Delegation data</h4></div>
                             <div class="card-body">
@@ -61,34 +51,9 @@
                             </div>
                         </div>
                     </div>
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-                    <div class="col-md-6">          
-                        <div class="card">
-                            <div class="card-header"><h4>Companies assignment</h4></div>
-                            <div class="card-body">
-                                <select name="company">
-                                    @foreach($companies as $company)
-                                        <option value="{{ $company->id }}">
-                                            {{ $company->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-<<<<<<< Updated upstream
-=======
-=======
                 </div>
                 <br>
                 <input type="hidden" name="company_id" value="{{ $company->id }}">
->>>>>>> Stashed changes
->>>>>>> Stashed changes
                 <div class="col-md-1 offset-md-11">
                     <button type="submit" class="btn btn-primary">
                         {{ __('Save') }}

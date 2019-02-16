@@ -58,15 +58,7 @@ class CompanyController extends Controller
     {
         $delegations = Delegation::where('company_id', '=', $company->id)->paginate(5);
 
-<<<<<<< Updated upstream
-        return view('delegations.index', compact('delegations'));
-=======
-<<<<<<< Updated upstream
-        return view('delegations.index', compact('delegations'));
-=======
         return view('delegations.index', compact('delegations', 'company'));
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     }
 
     /**
