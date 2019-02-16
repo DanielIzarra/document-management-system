@@ -14,6 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 Auth::routes(['register' => false]);
 
@@ -89,7 +99,15 @@ Route::middleware(['auth'])->group(function(){
 
     //Delegations
 
+<<<<<<< Updated upstream
     Route::get('delegations/create', 'DelegationController@create')
+=======
+<<<<<<< Updated upstream
+    Route::get('delegations/create', 'DelegationController@create')
+=======
+    Route::get('delegations/create/delegation/{company}', 'DelegationController@create')
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         ->name('delegations.create')->middleware('permission:create_delegations');
     Route::post('delegations/store', 'DelegationController@store')
         ->name('delegations.store')->middleware('permission:create_delegations');
@@ -124,4 +142,14 @@ Route::middleware(['auth'])->group(function(){
         ->name('departments.edit')->middleware('permission:edit_departments');
     Route::delete('departments/{department}', 'DepartmentController@destroy')
         ->name('departments.destroy')->middleware('permission:destroy_departments');
+<<<<<<< Updated upstream
 });
+=======
+<<<<<<< Updated upstream
+});
+=======
+});
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
