@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\User;
 use App\Delegation;
+use App\Department;
 use Validator;
 use Redirect;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class CompanyController extends Controller
     {
         $users = $company->users()->get();
 
-        return view('users.index', compact('users'));
+        return view('users.index', compact('users', 'company'));
     }
 
     /**
@@ -57,7 +58,19 @@ class CompanyController extends Controller
     {
         $delegations = Delegation::where('company_id', '=', $company->id)->paginate(5);
 
-        return view('delegations.index', compact('delegations'));
+        return view('delegations.index', compact('delegations', 'company'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_departments_company(Company $company)
+    {
+        $departments = Department::where('company_id', '=', $company->id)->paginate(5);
+
+        return view('departments.index', compact('departments', 'company'));
     }
 
     /**

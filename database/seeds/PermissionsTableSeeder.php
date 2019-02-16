@@ -41,9 +41,21 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name'         => 'Crear usuario',
-            'slug'         => 'create_users',
-            'description'  => 'Permite crear un nuevo usuario',
+            'name'         => 'Crear usuario de empresa',
+            'slug'         => 'create_user_company',
+            'description'  => 'Permite crear un nuevo usuario en la empresa',
+            'isroot'       => '0',
+        ]);
+        Permission::create([
+            'name'         => 'Crear usuario de sucursal',
+            'slug'         => 'create_user_delegation',
+            'description'  => 'Permite crear un nuevo usuario en la sucursal',
+            'isroot'       => '0',
+        ]);
+        Permission::create([
+            'name'         => 'Crear usuario de departamento',
+            'slug'         => 'create_user_department',
+            'description'  => 'Permite crear un nuevo usuario en el departamento',
             'isroot'       => '0',
         ]);
 
@@ -111,6 +123,13 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
+            'name'         => 'Ver departamentos de una empresa',
+            'slug'         => 'index_departments_company',
+            'description'  => 'Muestra todos los departamentos de una empresa',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
             'name'         => 'Ver información de la empresa',
             'slug'         => 'show_companies',
             'description'  => 'Permite ver la información de una empresa',
@@ -142,7 +161,7 @@ class PermissionsTableSeeder extends Seeder
             'name'         => 'Crear sucursal',
             'slug'         => 'create_delegations',
             'description'  => 'Permite crear una nueva sucursal',
-            'isroot'       => '1',
+            'isroot'       => '0',
         ]);
 
         Permission::create([
@@ -164,7 +183,14 @@ class PermissionsTableSeeder extends Seeder
             'slug'         => 'index_users_delegation',
             'description'  => 'Muestra los usuarios de una sucursal',
             'isroot'       => '0',
-        ]);  
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver departamentos de una sucursal',
+            'slug'         => 'index_departments_delegation',
+            'description'  => 'Muestra todos los departamentos de una sucursal',
+            'isroot'       => '0',
+        ]);
 
         Permission::create([
             'name'         => 'Ver información de la sucursal',
@@ -184,14 +210,70 @@ class PermissionsTableSeeder extends Seeder
             'name'         => 'Eliminar sucursal',
             'slug'         => 'destroy_delegations',
             'description'  => 'Permite eliminar una sucursal',
-            'isroot'       => '1',
+            'isroot'       => '0',
         ]);
 
         Permission::create([
             'name'         => 'Asignar/desasignar administrador a sucursal',
             'slug'         => 'assign_admin_delegations',
             'description'  => 'Permite la asignación de un administrador a una o varias sucursales',
-            'isroot'       => '1',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Crear departamento de empresa',
+            'slug'         => 'create_department_company',
+            'description'  => 'Permite crear un nuevo departamento en una empresa',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Crear departamento de sucursal',
+            'slug'         => 'create_department_delegation',
+            'description'  => 'Permite crear un nuevo departamento en una sucursal',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver departamentos administrados',
+            'slug'         => 'index_admin_departments',
+            'description'  => 'Muestra los departamentos administrados por un usuario',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Ver usuarios de un departamento',
+            'slug'         => 'index_users_department',
+            'description'  => 'Muestra los usuarios de un departamento',
+            'isroot'       => '0',
+        ]);  
+
+        Permission::create([
+            'name'         => 'Ver información del departamento',
+            'slug'         => 'show_departments',
+            'description'  => 'Permite ver la información de un departamento',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Editar información del departamento',
+            'slug'         => 'edit_departments',
+            'description'  => 'Permite editar la información del departamento',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Eliminar departamento',
+            'slug'         => 'destroy_departments',
+            'description'  => 'Permite eliminar un departamento',
+            'isroot'       => '0',
+        ]);
+
+        Permission::create([
+            'name'         => 'Asignar/desasignar administrador a departamento',
+            'slug'         => 'assign_admin_departments',
+            'description'  => 'Permite la asignación de un administrador a uno o varios departamentos',
+            'isroot'       => '0',
         ]);
     }
 }

@@ -97,45 +97,6 @@
                             </div>
                         </div>
                     </div>
-                </div> 
-                <br>
-                <div class="form-row">
-                    <div class="col-md-6">          
-                        <div class="card">
-                            <div class="card-header"><h4>Companies assignment</h4></div>
-                            <div class="card-body">
-                                <ul class="list-unstyled" style="height: 195px; overflow-y: auto;">
-                                    @foreach($companies as $company)
-                                        <li>
-                                            <label class="form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="companies[]" value="{{ $company->id }}"
-                                                @if (in_array($company->id, old('companies', []))) checked @endif>
-                                                {{ $company->name }}
-                                            </label>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">          
-                        <div class="card">
-                            <div class="card-header"><h4>Delegations assignment</h4></div>
-                            <div class="card-body">
-                                <ul class="list-unstyled" style="height: 195px; overflow-y: auto;">
-                                    @foreach($delegations as $delegation)
-                                        <li>
-                                            <label class="form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="delegations[]" value="{{ $delegation->id }}"
-                                                @if (in_array($delegation->id, old('delegations', []))) checked @endif>
-                                                {{ $delegation->name }}
-                                            </label>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <br>
                 <div class="col-md-1 offset-md-11">
@@ -143,6 +104,15 @@
                         {{ __('Save') }}
                     </button>
                 </div>
+                <?php if(isset($company)): ?>
+                        <input type="hidden" name="company_id" value="{{ $company->id }}">
+                <?php endif; ?>
+                <?php if (isset($delegation)): ?>
+                        <input type="hidden" name="delegation_id" value="{{ $delegation->id }}">
+                <?php endif; ?>
+                <?php if (isset($department)): ?>
+                        <input type="hidden" name="department_id" value="{{ $department->id }}">
+                <?php endif; ?>                
             </form>          
         </div>
     </div>

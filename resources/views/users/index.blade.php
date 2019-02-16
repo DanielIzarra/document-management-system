@@ -15,9 +15,21 @@
             <div class="card">
                 <div class="card-body">
                     <div>
-                        @can('users_create')
-                            <a href="{{ route('users.create')}}" class="btn btn-sm btn-primary float-right">create user</a>
-                        @endcan                
+                        @if(isset($company))
+                            @can('create_user_company')
+                                <a href="{{ route('users.create_user_company', $company) }}" class="btn btn-sm btn-primary float-right">create company user</a>
+                            @endcan
+                        @endif
+                        @if(isset($delegation))
+                            @can('create_user_delegation')
+                                <a href="{{ route('users.create_user_delegation', $delegation) }}" class="btn btn-sm btn-primary float-right">create delegation user</a>
+                            @endcan
+                        @endif
+                        @if(isset($department))
+                            @can('create_user_department')
+                                <a href="{{ route('users.create_user_department', $department) }}" class="btn btn-sm btn-primary float-right">create department user</a>
+                            @endcan
+                        @endif
                     </div>
                     <br><br>
                     <div>
@@ -37,22 +49,22 @@
                                     <td>
                                         <div>
                                             @can('assign_admin_companies')
-                                                <a href="{{ route('companies.create_assign_companies', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Assign</a>
+                                                <a href="{{ route('companies.create_assign_companies', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Assign Com.</a>
                                             @endcan
                                         </div>
                                     </td>
                                     <td>
-                                        @can('users_show')
-                                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Show</a>
+                                        @can('show_users')
+                                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
                                         @endcan
                                     </td> 
                                     <td>
-                                        @can('users_edit')
+                                        @can('edit_users')
                                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Edit</a>
                                         @endcan
                                     </td>
                                     <td>
-                                        @can('users_destroy')
+                                        @can('destroy_users')
                                             <form action="{{ route('users.destroy', $user->id) }}"  method="POST">
                                                 @csrf
                                                 @method('DELETE')

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Company;
+use App\Delegation;
+use App\Department;
 use Validator;
 use Redirect;
 use Caffeinated\Shinobi\Traits;
@@ -24,7 +26,7 @@ class UserController extends Controller
     { 
         $users = User::paginate(20);
 
-        return view('users.index', compact('users')); 
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -32,13 +34,35 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create_user_company(Company $company)
     {
         $allroles = Role::all();
-        $companies = Auth::user()->companies()->get();
-        $delegations = Auth::user()->delegations()->get();        
 
-        return view('users.create', compact('allroles', 'companies', 'delegations'));
+        return view('users.create', compact('allroles', 'company'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create_user_delegation(Delegation $delegation)
+    {
+        $allroles = Role::all();
+
+        return view('users.create', compact('allroles', 'delegation'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create_user_department(Department $department)
+    {
+        $allroles = Role::all();
+
+        return view('users.create', compact('allroles', 'department'));
     }
 
     /**
@@ -64,11 +88,19 @@ class UserController extends Controller
         $user->name = request('name');
         $user->email = request('email');
         $user->password = Hash::make(request('password'));
-        
+
         $user->save();
 
-        $user->companies()->sync($request->get('companies'));
-        $user->delegations()->sync($request->get('delegations'));
+        if(isset($request->company_id)){
+            $user->companies()->sync($request->company_id);
+        }
+        if (isset($request->delegation_id)) {
+            $user->delegations()->sync($request->delegation_id);
+        }
+        if (isset($request->department_id)) {
+            $user->departments()->sync($request->department_id);
+        }
+
         $user->roles()->sync($request->get('roles'));
 
         return back()->with('status', 'User created');
@@ -97,11 +129,9 @@ class UserController extends Controller
         $checked_permissions = $user->permissions()->get();
         $roles = Role::all();
         $checked_roles = $user->roles()->get();
-        $companies = Auth::user()->companies()->get();
-        $checked_companies = $user->companies()->get();  
 
         return view('users.edit', compact('user', 'permissions', 'checked_permissions', 
-                    'roles', 'checked_roles', 'companies', 'checked_companies'));
+                    'roles', 'checked_roles'));
     }
 
     /**
@@ -135,7 +165,6 @@ class UserController extends Controller
 
         $user->save();
 
-        $user->companies()->sync($request->get('companies'));
         $user->permissions()->sync($request->get('permissions'));
         $user->roles()->sync($request->get('roles'));
 

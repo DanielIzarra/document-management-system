@@ -12,12 +12,12 @@
                     </button>                    
                 </div>
             @endif  
-            <form method="POST" action="{{ route('delegations.store') }}">
+            <form method="POST" action="{{ route('departments.store') }}">
                 @csrf 
-                <div class="form-row">
-                    <div class="col-md-12">
+                <div class="form-row"> 
+                    <div class="col-md-12">          
                         <div class="card">
-                            <div class="card-header"><h4>Delegation data</h4></div>
+                            <div class="card-header"><h4>Department data</h4></div>
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-md-3 col-sm-12">
@@ -53,12 +53,17 @@
                     </div>
                 </div>
                 <br>
-                <input type="hidden" name="company_id" value="{{ $company->id }}">
                 <div class="col-md-1 offset-md-11">
                     <button type="submit" class="btn btn-primary">
                         {{ __('Save') }}
                     </button>
                 </div>
+                @if(isset($company))
+                    <input type="hidden" name="company_id" value="{{ $company->id }}">
+                @endif
+                @if(isset($delegation))
+                    <input type="hidden" name="delegation_id" value="{{ $delegation->id }}">
+                @endif
             </form>          
         </div>
     </div>

@@ -9,8 +9,13 @@
                     <div>                    
                         <div>
                             @if(isset($company))
-                                @can('create_delegations')
-                                    <a href="{{ route('delegations.create', $company)}}" class="btn btn-sm btn-primary float-right">create delegation</a>
+                                @can('create_department_company')
+                                    <a href="{{ route('departments.create_department_company', $company)}}" class="btn btn-sm btn-primary float-right">create company department</a>
+                                @endcan
+                            @endif
+                            @if(isset($delegation))
+                                @can('create_department_delegation')
+                                    <a href="{{ route('departments.create_department_delegation', $delegation)}}" class="btn btn-sm btn-primary float-right">create delegation department</a>
                                 @endcan
                             @endif
                         </div>
@@ -21,38 +26,34 @@
                                     <tr>
                                         <th width="50px">id</th>
                                         <th>Name</th>
-                                        <th colspan="5" class="col-md-2">&nbsp;</th>
+                                        <th colspan="4" class="col-md-2">&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($delegations as $delegation)
+                                    @foreach($departments as $department)
                                         <tr>
-                                            <td>{{ $delegation->id }}</td>
-                                            <td>{{ $delegation->name }}</td>
+                                            <td>{{ $department->id }}</td>
+                                            <td>{{ $department->name }}</td>
 
                                             <td>
-                                                @can('index_users_delegation')
-                                                    <a href="{{ route('delegations.index_users_delegation', $delegation->id) }}" class="btn btn-sm btn-outline-dark float-right">Users</a>
+                                                @can('index_users_department')
+                                                    <a href="{{ route('departments.index_users_department', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Users</a>
+                                                @endcan
+                                            </td>
+
+                                            <td>
+                                                @can('show_departments')
+                                                    <a href="{{ route('departments.show', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
                                                 @endcan
                                             </td>
                                             <td>
-                                                @can('index_departments_delegation')
-                                                    <a href="{{ route('departments.index_departments_delegation', $delegation->id) }}" class="btn btn-sm btn-outline-dark float-right">Departments</a>
+                                                @can('edit_departments')
+                                                    <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm btn-outline-dark float-right">Edit</a>
                                                 @endcan
                                             </td>
                                             <td>
-                                                @can('show_delegations')
-                                                    <a href="{{ route('delegations.show', $delegation->id) }}" class="btn btn-sm btn-outline-dark float-right">Info</a>
-                                                @endcan
-                                            </td>
-                                            <td>
-                                                @can('edit_delegations')
-                                                    <a href="{{ route('delegations.edit', $delegation->id) }}" class="btn btn-sm btn-outline-dark float-right">Edit</a>
-                                                @endcan
-                                            </td>
-                                            <td>
-                                                @can('destroy_delegations')
-                                                    <form action="{{ route('delegations.destroy', $delegation->id) }}"  method="POST">
+                                                @can('destroy_departments')
+                                                    <form action="{{ route('departments.destroy', $department->id) }}"  method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-sm btn-outline-danger float-right" type="submit">Delete</button>
@@ -63,7 +64,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>                       
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Delegation;
+use App\Department;
 use App\Company;
 use Validator;
 use Redirect;
@@ -44,7 +45,19 @@ class DelegationController extends Controller
     {
         $users = $delegation->users()->get();
 
-        return view('users.index', compact('users'));
+        return view('users.index', compact('users', 'delegation'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_departments_delegation(Delegation $delegation)
+    {
+        $departments = Department::where('delegation_id', '=', $delegation->id)->paginate(5);
+
+        return view('departments.index', compact('departments', 'delegation'));
     }
 
     /**
@@ -52,11 +65,12 @@ class DelegationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Company $company)
     {
         $companies = Auth::user()->companies()->get();
 
-        return view('delegations.create', compact('companies'));
+        return view('delegations.create', compact('companies', 'company'));
+
     }
 
     /**
@@ -86,7 +100,8 @@ class DelegationController extends Controller
         }
 
         $delegation->name = request('name');
-        $delegation->company_id = request('company');
+
+        $delegation->company_id = request('company_id');
 
         $delegation->save();
 
