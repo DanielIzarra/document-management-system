@@ -45,7 +45,7 @@ class DelegationController extends Controller
     {
         $users = $delegation->users()->get();
 
-        return view('users.index', compact('users'));
+        return view('users.index_users_delegation', compact('users', 'delegation'));
     }
 
     /**

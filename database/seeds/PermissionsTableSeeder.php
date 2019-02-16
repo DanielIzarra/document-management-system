@@ -42,8 +42,27 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::create([
             'name'         => 'Crear usuario',
-            'slug'         => 'create_users',
-            'description'  => 'Permite crear un nuevo usuario',
+            'slug'         => 'create_user',
+            'description'  => 'Permite al superusuario crear un nuevo usuario en el sistema',
+            'isroot'       => '1',
+        ]);
+
+        Permission::create([
+            'name'         => 'Crear usuario de empresa',
+            'slug'         => 'create_user_company',
+            'description'  => 'Permite crear un nuevo usuario en la empresa',
+            'isroot'       => '0',
+        ]);
+        Permission::create([
+            'name'         => 'Crear usuario de sucursal',
+            'slug'         => 'create_user_delegation',
+            'description'  => 'Permite crear un nuevo usuario en la sucursal',
+            'isroot'       => '0',
+        ]);
+        Permission::create([
+            'name'         => 'Crear usuario de departamento',
+            'slug'         => 'create_user_department',
+            'description'  => 'Permite crear un nuevo usuario en el departamento',
             'isroot'       => '0',
         ]);
 

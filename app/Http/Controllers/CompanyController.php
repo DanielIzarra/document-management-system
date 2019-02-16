@@ -46,7 +46,7 @@ class CompanyController extends Controller
     {
         $users = $company->users()->get();
 
-        return view('users.index', compact('users'));
+        return view('users.index_users_company', compact('users', 'company'));
     }
 
     /**

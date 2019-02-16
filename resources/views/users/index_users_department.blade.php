@@ -14,10 +14,10 @@
             @endif 
             <div class="card">
                 <div class="card-body">
-                    <div>
-                        @can('create_user')
-                            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary float-right">create user</a>
-                        @endcan             
+                    <div>              
+                        @can('create_user_department')
+                            <a href="{{ route('users.create_user_department', $department) }}" class="btn btn-sm btn-primary float-right">create user department</a>
+                        @endcan                
                     </div>
                     <br><br>
                     <div>

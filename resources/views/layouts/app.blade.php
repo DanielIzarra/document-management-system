@@ -57,11 +57,6 @@
                             <li class="nav-item <?php $isActivated = isset($delegations) ? 'active' : ''; echo $isActivated; ?>">
                                 <a class="nav-link" href="{{ route('delegations.index_administrator') }}">{{ __('Delegation') }}</a>
                             </li>
-                        @endcan                        
-                        @can('create_departments')
-                            <li class="nav-item <?php $isActivated = isset($departments) ? 'active' : ''; echo $isActivated; ?>">
-                                <a class="nav-link" href="{{ route('departments.create') }}">{{ __('Departments') }}</a>
-                            </li>
                         @endcan
                         @can('index_roles')
                             <li class="nav-item <?php $isActivated = isset($roles) ? 'active' : ''; echo $isActivated; ?>">

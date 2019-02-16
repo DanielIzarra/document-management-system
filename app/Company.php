@@ -21,11 +21,16 @@ class Company extends Model
     public function users()
     {
         return $this->belongsToMany('App\User')->withTimestamps();
-    }  
+    }
     
     public function delegations()
     {
         return $this->hasMany('App\Delegation');
+    }
+
+    public function departments()
+    {
+        return $this->hasMany('App\Department');
     }
 
 }

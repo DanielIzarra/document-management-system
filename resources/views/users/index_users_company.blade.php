@@ -15,9 +15,9 @@
             <div class="card">
                 <div class="card-body">
                     <div>
-                        @can('create_user')
-                            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary float-right">create user</a>
-                        @endcan             
+                        @can('create_user_company')
+                            <a href="{{ route('users.create_user_company', $company) }}" class="btn btn-sm btn-primary float-right">create user company</a>
+                        @endcan              
                     </div>
                     <br><br>
                     <div>

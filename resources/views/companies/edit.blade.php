@@ -71,7 +71,7 @@
                                         <label for="cif" class="col-md-12 col-form-label text-md-left">{{ __('CIF') }}</label>
                                     </div>
                                     <div class="col-md-9 col-sm-12">
-                                        <input id="cif" type="text" class="form-control" name="cif" value="{{ $company->cif }}">
+                                        <input id="cif" type="text" readonly class="col-form-label form-control-plaintext" value="{{ $company->cif }}">
                                     </div>
                                 </div>                                
                             </div>

@@ -27,4 +27,9 @@ class Delegation extends Model
     {
         return $this->belongsToMany('App\User')->withTimestamps();
     }
+
+    public function departments()
+    {
+        return $this->hasMany('App\Department');
+    }
 }
