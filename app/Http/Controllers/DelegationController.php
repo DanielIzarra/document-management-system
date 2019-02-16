@@ -65,25 +65,12 @@ class DelegationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-    public function create()
-    {
-        $companies = Auth::user()->companies()->get();
-
-        return view('delegations.create', compact('companies'));
-<<<<<<< Updated upstream
-=======
-=======
     public function create(Company $company)
     {
         $companies = Auth::user()->companies()->get();
 
         return view('delegations.create', compact('companies', 'company'));
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
     }
 
     /**
@@ -113,15 +100,8 @@ class DelegationController extends Controller
         }
 
         $delegation->name = request('name');
-<<<<<<< Updated upstream
-        $delegation->company_id = request('company');
-=======
-<<<<<<< Updated upstream
-        $delegation->company_id = request('company');
-=======
+
         $delegation->company_id = request('company_id');
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
         $delegation->save();
 
