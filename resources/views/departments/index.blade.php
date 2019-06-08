@@ -8,6 +8,7 @@
                 <div class="card-body">
                     <div>                    
                         <div>
+                            @include('partials.searcher', ['whatWeSearch' => 'department'])
                             @if(isset($company))
                                 @can('create_department_company')
                                     <a href="{{ route('departments.create_department_company', $company)}}" class="btn btn-sm btn-primary float-right">create company department</a>

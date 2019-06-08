@@ -1,0 +1,40 @@
+.table td:nth-of-type(2) {
+    width: 100%;
+}
+
+#searcher-input {
+    float: left;
+    width: calc(100% - 100px);
+    padding: 0 6px;
+    border: none;
+    border-bottom: 1px solid #000;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+.searcher {
+    position: relative;
+}
+
+#searcher-results {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 1;
+}
+
+#searcher-results a {
+    display: block;
+    width:  100%;
+    padding: 2px;
+    color: #444;
+    text-decoration: none
+}
+#searcher-results a:hover {
+    background: #343a40 ;
+    color: #fff;
+    text-decoration: none
+}

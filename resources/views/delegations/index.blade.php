@@ -8,6 +8,7 @@
                 <div class="card-body">
                     <div>                    
                         <div>
+                            @include('partials.searcher', ['whatWeSearch' => 'delegation'])
                             @if(isset($company))
                                 @can('create_delegations')
                                     <a href="{{ route('delegations.create', $company)}}" class="btn btn-sm btn-primary float-right">create delegation</a>

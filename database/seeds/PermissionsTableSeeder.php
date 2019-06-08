@@ -214,13 +214,6 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name'         => 'Asignar/desasignar administrador a sucursal',
-            'slug'         => 'assign_admin_delegations',
-            'description'  => 'Permite la asignación de un administrador a una o varias sucursales',
-            'isroot'       => '0',
-        ]);
-
-        Permission::create([
             'name'         => 'Crear departamento de empresa',
             'slug'         => 'create_department_company',
             'description'  => 'Permite crear un nuevo departamento en una empresa',
@@ -266,13 +259,6 @@ class PermissionsTableSeeder extends Seeder
             'name'         => 'Eliminar departamento',
             'slug'         => 'destroy_departments',
             'description'  => 'Permite eliminar un departamento',
-            'isroot'       => '0',
-        ]);
-
-        Permission::create([
-            'name'         => 'Asignar/desasignar administrador a departamento',
-            'slug'         => 'assign_admin_departments',
-            'description'  => 'Permite la asignación de un administrador a uno o varios departamentos',
             'isroot'       => '0',
         ]);
     }

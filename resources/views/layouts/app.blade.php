@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -38,6 +40,11 @@
                                 <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
                             </li>
                         @endcan
+                        @role('root')
+                            <li class="nav-item <?php $isActivated = isset($repositories) ? 'active' : ''; echo $isActivated; ?>">
+                                <a class="nav-link" href="{{ route('repositories.index') }}">{{ __('Repository') }}</a>
+                            </li>
+                        @endrole
                         @can('index_companies')
                             <li class="nav-item <?php $isActivated = isset($companies) ? 'active' : ''; echo $isActivated; ?>">
                                 <a class="nav-link" href="{{ route('companies.index') }}">{{ __('Companies') }}</a>
@@ -88,7 +95,11 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">                                    
+                                    <a class="dropdown-item" href="{{ route('documents.index_user_basic', Auth::user()->id) }}">
+                                            {{ __('User Documents') }}
+                                    </a>                                    
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
