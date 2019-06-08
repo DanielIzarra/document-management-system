@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container-fluid">
     <div class="row justify-content-end">
         <div class="col-md-10">
@@ -15,6 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <div>
+                        @include('partials.searcher', ['whatWeSearch' => 'user'])
                         @if(isset($company))
                             @can('create_user_company')
                                 <a href="{{ route('users.create_user_company', $company) }}" class="btn btn-sm btn-primary float-right">create company user</a>
@@ -38,7 +40,7 @@
                                 <tr>
                                     <th width="50px">id</th>
                                     <th>Name</th>
-                                    <th colspan="4" class="col-md-1">&nbsp;</th>
+                                    <th colspan="5" class="col-md-1">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,11 +49,12 @@
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>
-                                        <div>
-                                            @can('assign_admin_companies')
-                                                <a href="{{ route('companies.create_assign_companies', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Assign Com.</a>
-                                            @endcan
-                                        </div>
+                                        @can('assign_admin_companies')
+                                            <a href="{{ route('companies.create_assign_companies', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Assign Com.</a>
+                                        @endcan
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('documents.index', $user->id) }}" class="btn btn-sm btn-outline-dark float-right">Documents</a>
                                     </td>
                                     <td>
                                         @can('show_users')

@@ -12,6 +12,26 @@ use Illuminate\Support\Facades\Auth;
 
 class DepartmentController extends Controller
 {
+
+    /**
+     * Display a listing of the users received.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_search(Request $request)
+    {
+        $departments = Department::whereIn('id', $request->ids)->get();
+
+        return view('departments.index', compact('departments'));
+    }
+
+    public function index_department_search($id)
+    {
+        $departments = Department::where('id', $id)->get();
+
+        return view('departments.index', compact('departments'));
+    }
+
     /**
      * Display a listing of the resource.
      *

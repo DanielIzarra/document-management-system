@@ -30,6 +30,25 @@ class UserController extends Controller
     }
 
     /**
+     * Display a listing of the users received.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_search(Request $request)
+    {
+        $users = User::whereIn('id', $request->ids)->get();
+
+        return view('users.index', compact('users'));
+    }
+
+    public function index_user_search($id)
+    {
+        $users = User::where('id', $id)->get();
+
+        return view('users.index', compact('users'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

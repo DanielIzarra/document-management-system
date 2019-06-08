@@ -15,6 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <div>
+                        @include('partials.searcher', ['whatWeSearch' => 'company'])
                         @can('create_companies')
                             <a href="{{ route('companies.create')}}" class="btn btn-sm btn-primary float-right">create company</a>
                         @endcan

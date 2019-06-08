@@ -52,4 +52,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Department')->withTimestamps();
     }
+
+    /**
+     * The documents that belong to the user.
+     */
+    public function documents()
+    {
+        return $this->belongsToMany('App\Document')->withTimestamps();
+    }
 }

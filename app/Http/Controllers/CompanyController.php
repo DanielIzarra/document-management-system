@@ -26,6 +26,25 @@ class CompanyController extends Controller
     }
 
     /**
+     * Display a listing of the users received.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_search(Request $request)
+    {
+        $companies = Company::whereIn('id', $request->ids)->get();
+
+        return view('companies.index', compact('companies'));
+    }
+
+    public function index_company_search($id)
+    {
+        $companies = Company::where('id', $id)->get();
+
+        return view('companies.index', compact('companies'));
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

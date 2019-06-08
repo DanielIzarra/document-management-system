@@ -25,6 +25,25 @@ class DelegationController extends Controller
     }
 
     /**
+     * Display a listing of the users received.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_search(Request $request)
+    {
+        $delegations = Delegation::whereIn('id', $request->ids)->get();
+
+        return view('delegations.index', compact('delegations'));
+    }
+
+    public function index_delegation_search($id)
+    {
+        $delegations = Delegation::where('id', $id)->get();
+
+        return view('delegations.index', compact('delegations'));
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

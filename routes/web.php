@@ -22,12 +22,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function(){
     // Roles
 
-    Route::post('roles/store', 'RoleController@store')->name('roles.store')->middleware('permission:create_roles');
-    Route::get('roles/create', 'RoleController@create')->name('roles.create')->middleware('permission:create_roles');
-    Route::get('roles', 'RoleController@index')->name('roles.index')->middleware('permission:index_roles');
-    Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permission:edit_roles');
-    Route::patch('roles/{role}', 'RoleController@update')->name('roles.update')->middleware('permission:edit_roles');
-    Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:destroy_roles');
+    Route::post('roles/store', 'RoleController@store')
+        ->name('roles.store')->middleware('permission:create_roles');
+    Route::get('roles/create', 'RoleController@create')
+        ->name('roles.create')->middleware('permission:create_roles');
+    Route::get('roles', 'RoleController@index')
+        ->name('roles.index')->middleware('permission:index_roles');
+    Route::get('roles/{role}/edit', 'RoleController@edit')
+        ->name('roles.edit')->middleware('permission:edit_roles');
+    Route::patch('roles/{role}', 'RoleController@update')
+        ->name('roles.update')->middleware('permission:edit_roles');
+    Route::delete('roles/{role}', 'RoleController@destroy')
+        ->name('roles.destroy')->middleware('permission:destroy_roles');
 
     // Users
    
@@ -108,9 +114,6 @@ Route::middleware(['auth'])->group(function(){
 
     //Departments
 
-    Route::get('users/create_user_company/{company}', 'UserController@create_user_company')
-    ->name('users.create_user_company')->middleware('permission:create_user_company');
-
     Route::get('departments/create_department_company/{company}', 'DepartmentController@create_department_company')
         ->name('departments.create_department_company')->middleware('permission:create_department_company');
     Route::post('departments/store', 'DepartmentController@store')
@@ -131,4 +134,64 @@ Route::middleware(['auth'])->group(function(){
         ->name('departments.edit')->middleware('permission:edit_departments');
     Route::delete('departments/{department}', 'DepartmentController@destroy')
         ->name('departments.destroy')->middleware('permission:destroy_departments');
+
+    //Documents
+
+    Route::get('documents/index/{user}', 'DocumentController@index')
+        ->name('documents.index');
+    Route::get('documents/user/{user}', 'DocumentController@index_user_basic')
+        ->name('documents.index_user_basic');
+    Route::get('documents/upload/{user}', 'DocumentController@upload')
+        ->name('documents.upload');
+    Route::post('documents/store/{user}', 'DocumentController@store')
+        ->name('documents.store');
+    Route::delete('documents/{id}', 'DocumentController@destroy')
+        ->name('documents.destroy');
+    Route::get('documents/download/{id}', 'DocumentController@download')
+        ->name('documents.download');
+    Route::post('documents/assign/{user}', 'DocumentController@store_assign')
+        ->name('documents.store_assign');
+    Route::post('documents/state/{doc}', 'DocumentController@state_assign')
+        ->name('documents.state_assign');
+        
+
+    //Repository
+
+    Route::get('repositories', 'RepositoryController@index')
+        ->name('repositories.index');
+    Route::get('repositories/upload', 'RepositoryController@upload')
+        ->name('repositories.upload');
+    Route::post('repositories/store', 'RepositoryController@store')
+        ->name('repositories.store');
+    Route::delete('repositories/{id}', 'RepositoryController@destroy')
+        ->name('repositories.destroy');
+    Route::get('repositories/download/{id}', 'RepositoryController@download')
+        ->name('repositories.download');
+
+    
+    //Searcher
+
+    Route::post('search/user', 'UserController@index_search')
+        ->name('users.index_search');
+    Route::get('search/user/{id}', 'UserController@index_user_search')
+        ->name('users.index_user_search');
+
+    Route::post('search/company', 'CompanyController@index_search')
+        ->name('company.index_search');
+    Route::get('search/company/{id}', 'CompanyController@index_company_search')
+        ->name('company.index_company_search');
+
+    Route::post('search/delegation', 'DelegationController@index_search')
+        ->name('delegation.index_search');
+    Route::get('search/delegation/{id}', 'DelegationController@index_delegation_search')
+        ->name('delegation.index_delegation_search');
+
+    Route::post('search/department', 'DepartmentController@index_search')
+        ->name('department.index_search');
+    Route::get('search/department/{id}', 'DepartmentController@index_department_search')
+        ->name('department.index_department_search');
+
+    Route::post('search', 'SearchController@index')
+        ->name('search.index');
+
 });
